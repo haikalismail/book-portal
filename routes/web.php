@@ -21,4 +21,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::any('/search','PagesController@search');

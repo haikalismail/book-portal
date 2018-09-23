@@ -1,6 +1,4 @@
-@extends('layout.app')
 
-@section('header')
 <!-- header modal -->
 @guest
 <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
@@ -75,7 +73,7 @@
 @endguest
 
 <script>
-  $('#myModal88').modal('show');
+  //$('#myModal88').modal('show');
 </script>  
 <!-- header modal -->
 <!-- header -->
@@ -91,11 +89,13 @@
       <input class="search_box" type="checkbox" id="search_box">
       <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
       <div class="search_form">
-        <form action="#" method="post">
-          <input type="text" name="q" placeholder="Search...">
+        
+        <form action="{{action('PagesController@search')}}" method="POST" role="search">
+          {{ csrf_field() }}
+          <input type="text" name="q" placeholder="Search keywords...">
           <input type="submit" value="Send">
         
-          <!-- Dispay recorded database 
+          <!-- Dispay recorded database--> 
           <div class="container">
               @if(isset($details))
               <h2>Search Results for <b> {{ $query }} </b> ...</h2>
@@ -111,26 +111,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($details as $user)
+                  @foreach($details as $items)
                   <tr>
-                    <td>{{$user->book_id}}</td>
-                    <td>{{$user->book_title}}</td>
-                    <td>{{$user->book_isbn}}</td>
-                    <td>{{$user->book_location}}</td>
-                    <td>{{$user->book_status}}</td>
-                    <td>{{$user->book_unit}}</td>
+                    <td>{{$items->book_id}}</td>
+                    <td>{{$items->book_title}}</td>
+                    <td>{{$items->book_isbn}}</td>
+                    <td>{{$items->book_location}}</td>
+                    <td>{{$items->book_status}}</td>
+                    <td>{{$items->book_unit}}</td>
         
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-              
+              @elseif(isset($message))
+                <p>{{ $message }}</p>
+          
               @endif
-            </div>-->
+            </div>
         </form>
       </div>
     </div>
   </div>
 </div>
 <!-- //header -->
-@endsection

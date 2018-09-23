@@ -1,6 +1,7 @@
 @extends('layout.app')
-@include('inc.header')
+
 @section('content')
+@include('inc.header')
 @include('inc.navigation')
 	<!-- banner -->
 	<div class="banner">
@@ -15,8 +16,7 @@
 			<div class="container">
 				<h3>Hot Books</h3>
 				<div class="agileinfo_new_products_grids">
-					@if(count($genre)>0)
-						
+					
 						
 						<div class="col-md-3 agileinfo_new_products_grid">
 							<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
@@ -35,18 +35,16 @@
 									</div>
 								</div>
 								
-								@foreach($item as $item)<h5><a href="#">{{$item->book_title}}</a></h5>@endforeach
+								<h5><a href="#">1</a></h5>
 								<div class="simpleCart_shelfItem">
-								@foreach($author as $author)<p><i class="item_price">{{$author->author_fname}}</i></p>@endforeach
-								@foreach($publisher as $publisher)<p><i class="item_price">{{$publisher->publisher_name}}</i></p>@endforeach 
+								<p><i class="item_price">2</i></p>
+								<p><i class="item_price">3</i></p> 
 										<button href="#">View More</button>
 								</div>
 							</div>
 						</div>
 						
-						
-					
-					@endif
+				
 
 						<div class="clearfix"> </div>
 					</div>
@@ -311,3 +309,4 @@
 	<!-- //Famous author --> 
     
 @include('inc.footer')
+@endsection

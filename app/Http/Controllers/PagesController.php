@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\Input;
 use View;
 use Illuminate\Http\Request;
 use App\book_author;
@@ -115,16 +117,18 @@ class PagesController extends Controller
         //
     }
 
-    public function seacrh(){
+    public function search(){
         $q = Input::get ('q');
         if($q != ''){
-            $user = book_items::where('book_id', 'LIKE', '%'. $q .'%') 
+            $items = book_items::where('book_id', 'LIKE', '%'. $q .'%') 
                             ->orWhere('book_title', 'LIKE', '%'. $q .'%')
                             ->orWhere('book_isbn', 'LIKE', '%'. $q .'%')
                             ->get();
-            if(count($user) > 0)
-                return view ('pages.index')->withDetails ($user)->withQuery ($q);
+            if(count($items) > 0)
+                return view ('pages.search')->withDetails ($items)->withQuery ($q);
+            else
+                return view ('pages.search')->withMessage ("Oops!, record not found. Please try again");
         }
-        return view ('pages.index')->withMessage ("Oops!, record not found. Please try again");
+        return view ('pages.search')->withMessage ("Oops!, record not found. Please try again");
     }
 }
