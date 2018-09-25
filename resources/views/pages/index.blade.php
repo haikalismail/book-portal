@@ -4,8 +4,6 @@
 @include('inc.navigation')
 
 <?php use App\book_author;?>
-
-	
 	
 	<!-- banner -->
 	<div class="banner">
