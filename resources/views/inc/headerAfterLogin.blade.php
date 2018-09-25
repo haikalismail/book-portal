@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.catapp')
 @section('headerAfterLogin')
 <!-- header -->
 <div class="header" id="home1">

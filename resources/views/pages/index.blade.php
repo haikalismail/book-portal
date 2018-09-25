@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.catapp')
 @section('content')
 @include('inc.header')
 @include('inc.navigation')
