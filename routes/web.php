@@ -17,6 +17,7 @@ Route::get('/dashboard', 'PagesController@dashboard');
 
 Route::get('/bookCategory', 'BooksController@category');
 
+Route::resource('bookCategory', 'BooksController');
 
 Route::resource('posts','PostController');
 
@@ -32,8 +33,4 @@ Route::get('/{id}', 'genreCont@show');
 
 Route::resource('review','reviewCont');
 
-<<<<<<< HEAD
 Route::resource('rating','ratingCont');
-=======
-Route::resource('rating','ratingCont');
->>>>>>> 1f3c64d0ac2e232b4115927edbbf83c719963404

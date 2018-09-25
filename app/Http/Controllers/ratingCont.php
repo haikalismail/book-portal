@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\rating;
-use App\Book;
+use App\book_rating;
+use App\book_items;
 use DB;
 
 class ratingCont extends Controller
@@ -42,7 +42,7 @@ class ratingCont extends Controller
         ]);
         
         //create rating
-        $rating = new rating;
+        $rating = new book_rating;
         
         $rating->rating = $request->input('rating');
         $rating->user_id = session('userid');
@@ -87,13 +87,13 @@ class ratingCont extends Controller
             'rating'=>'required',
         ]);
         
-        if (rating::where('book_id', '=', $id)
+        if (book_rating::where('book_id', '=', $id)
         ->where('user_id',session('userid'))
         ->exists()) {
             // user found
         //create rating
         
-        $ratings = rating::where('book_id', '=', $id)
+        $ratings = book_rating::where('book_id', '=', $id)
         ->where('user_id',session('userid'))
         ->first();
         $ratings->rating = $request->input('rating');

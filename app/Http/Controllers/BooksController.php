@@ -96,24 +96,24 @@ class BooksController extends Controller
         ->leftjoin('book_category', 'book_genre.genre_id', '=', 'book_category.genre_id')
         ->where(['book_id'=>$id])
         ->first();
-        return $genre;
+        
         
         $contributor = DB::table('book_contributor')
         ->leftjoin('book_author', 'book_contributor.author_id','=','book_author.author_id')
         ->where(['book_id'=>$id])
         ->get();
 
-        $rating = rating::leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
+        $rating = book_rating::leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
         ->where(['book_id'=>$id])
         ->where('book_rating.user_id',session('userid'))
         ->first();
 
-        $reviews = Boreview::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
+        $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
         ->where('book_review.user_id','!=',session('userid'))
         ->where('book_id',$id)
         ->orderBy('review_date','desc')
         ->paginate(10);
-        $userreviews = review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
+        $userreviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
         ->where('book_review.user_id',session('userid'))
         ->where('book_review.book_id',$id)
         ->first();
