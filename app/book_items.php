@@ -29,4 +29,19 @@ class book_items extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\book_category');
+    }
+
+    public function author()
+    {
+        return $this->hasMany('App\book_author');
+    }
+
+    public function publisher()
+    {
+        return $this->hasMany('App\book_publisher');
+    }
 }
