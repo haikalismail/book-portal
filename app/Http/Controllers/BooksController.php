@@ -19,20 +19,11 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $title = 'Welcome to Laravel!';
-        return view ('books.index', compact('title'));
+        $books = book_items::all();
+        return view ('books.category') -> with ('books', $books);
        
     }
 
-    public function category()
-    {
-        
-        $books = book_items::all();
-        return view ('books.category') -> with ('books', $books);
-
-
-
-    }
 
     public function testjoin(){
 
