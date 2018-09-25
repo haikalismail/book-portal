@@ -60,7 +60,8 @@ $(".scroll").click(function(event){
         });
     });
 </script>
-    @include('inc.navbar')
+    @include('inc.header')
+    @include('inc.navigation')
 
     <body>
 

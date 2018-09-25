@@ -13,7 +13,7 @@
                     <li><a href = "/bookCategory"></span> All Books</a>
                     
                     @foreach($genres as $genre)
-                    <li><a href = "/{{$genre->genre_id}}" >{{$genre->genre_name}}</a></li>
+                    <li><a href = "/bookCategory/{{$genre->genre_id}}" >{{$genre->genre_name}}</a></li>
                     @endforeach
 
                 </ul>

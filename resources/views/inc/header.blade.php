@@ -55,7 +55,7 @@
 @else
 <li class="nav-item dropdown">
     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        {{ Auth::user_reader()->user_fname }} <span class="caret"></span>
+        {{ Auth::user()->user_fname}} <span class="caret"></span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -72,10 +72,6 @@
 </li>
 @endguest
 
-<script>
-  //$('#myModal88').modal('show');
-</script>  
-<!-- header modal -->
 <!-- header -->
 <div class="header" id="home1">
   <div class="container">

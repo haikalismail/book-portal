@@ -92,6 +92,7 @@ class PagesController extends Controller
         
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -156,6 +157,11 @@ class PagesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function dashboard()
+    {
+        return view('pages.dashboard');
     }
 
     public function search()

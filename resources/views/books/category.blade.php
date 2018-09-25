@@ -27,7 +27,7 @@
 											@endforeach
 											</p>
 										</div>
-										<a class="button button2" href="/bookCategory/{{$book->book_id}}" role="button">View More</a>
+										<a class="button button2" href="book/{{$book->book_id}}" role="button">View More</a>
 									</div> 
 								</div>
 							</div>
