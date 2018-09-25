@@ -55,7 +55,7 @@ class PagesController extends Controller
         ->with('book_review', book_review::all())
         ->with('user_reader', user_reader::all());*/
 
-        $items = DB :: table('book_items')
+       /* $items = DB :: table('book_items')
                 ->join('book_publisher','book_publisher.publisher_id','=','book_items.publisher_id')
                 ->get();
         
@@ -71,17 +71,24 @@ class PagesController extends Controller
         $author = DB :: table('book_contributor')
                 ->join('book_items','book_items.book_id','=','book_contributor.book_id')
                 ->join('book_author','book_author.author_id','=','book_contributor.author_id')
-                ->get();
+                ->get();*/
         
         //$item_rating = array_combine($items,$rating);
         //$category_author = array_combine($category,$author);
         //$book = array_combine($item_rating,$category_author);
         //return $author;
 
-        return view('pages.index')->with('items',$items)
+        /*return view('pages.index')->with('items',$items)
                                   ->with('rating',$rating)
                                   ->with('category',$category)
-                                  ->with('author',$author);
+                                  ->with('author',$author);*/
+        
+                                  $books = DB::table('book_items')
+                                  ->leftjoin('book_publisher', 'book_publisher.publisher_id', '=', 'book_items.publisher_id')
+                                  ->leftjoin('book_category', 'book_category.book_id', '=', 'book_items.book_id')
+                                  ->leftjoin('book_genre', 'book_genre.genre_id', '=', 'book_category.genre_id')
+                                  ->get();
+                                  return view ('pages.index') -> with ('books', $books);
         
     }
 

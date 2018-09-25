@@ -22,3 +22,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::any('/search','PagesController@search');
+
+Route::resource('bookgenre','genreCont');
+
+Route::get('/{id}', 'genreCont@show');
+
+Route::resource('review','reviewCont');
+
+Route::resource('rating','ratingCont');
