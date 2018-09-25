@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use View;
+use DB;
 use Illuminate\Http\Request;
 use App\book_author;
 use App\book_category;
@@ -38,17 +39,50 @@ class PagesController extends Controller
         $reader=user_reader::all();
         return view('posts.index')->with('reader',$reader,'author',$author);*/
 
-        return View::make('pages.index')
-        ->with('author', book_author::all())
-        ->with('category', book_category::all())
-        ->with('contributor', book_contributor::all())
-        ->with('genre', book_genre::all())
-        ->with('item', book_items::all())
-        ->with('publisher', book_publisher::all())
-        ->with('rating', book_rating::all())
-        ->with('record', read_record::all())
-        ->with('review', book_review::all())
-        ->with('reader', user_reader::all());
+        /*$book_author = \App\book_author::with(['book'])->get();
+
+        return View::make('posts.show')->with('book_author',$book_author);*/
+
+        /*return View::make('pages.index')
+        ->with('book_author', book_author::all())
+        ->with('book_category', book_category::all())
+        ->with('book_contributor', book_contributor::all())
+        ->with('book_genre', book_genre::all())
+        ->with('book_item', book_items::all())
+        ->with('book_publisher', book_publisher::all())
+        ->with('book_rating', book_rating::all())
+        ->with('read_record', read_record::all())
+        ->with('book_review', book_review::all())
+        ->with('user_reader', user_reader::all());*/
+
+        $items = DB :: table('book_items')
+                ->join('book_publisher','book_publisher.publisher_id','=','book_items.publisher_id')
+                ->get();
+        
+        $rating = DB :: table('book_rating')
+                ->join('book_items','book_items.book_id','=','book_rating.book_id')
+                ->get();
+        
+        $category = DB :: table('book_category')
+                    ->join('book_genre','book_genre.genre_id','=','book_category.genre_id')
+                    ->join('book_items','book_items.book_id','=','book_category.book_id')
+                    ->get();
+
+        $author = DB :: table('book_contributor')
+                ->join('book_items','book_items.book_id','=','book_contributor.book_id')
+                ->join('book_author','book_author.author_id','=','book_contributor.author_id')
+                ->get();
+        
+        //$item_rating = array_combine($items,$rating);
+        //$category_author = array_combine($category,$author);
+        //$book = array_combine($item_rating,$category_author);
+        //return $author;
+
+        return view('pages.index')->with('items',$items)
+                                  ->with('rating',$rating)
+                                  ->with('category',$category)
+                                  ->with('author',$author);
+        
     }
 
     /**
@@ -58,7 +92,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -69,7 +103,7 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        return 123;
+        //
     }
 
     /**
@@ -117,7 +151,8 @@ class PagesController extends Controller
         //
     }
 
-    public function search(){
+    public function search()
+    {
         $q = Input::get ('q');
         if($q != ''){
             $items = book_items::where('book_id', 'LIKE', '%'. $q .'%') 
