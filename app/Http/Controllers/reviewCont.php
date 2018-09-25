@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\review;
+use App\book_review;
 use DB;
 
 class reviewCont extends Controller
@@ -18,10 +18,10 @@ class reviewCont extends Controller
     public function index()
     {   
 
-        $review = review::where('review_id','!=','3')
+        $review = book_review::where('review_id','!=','3')
         ->where('user_id',session('userid'))
         ->orderBy('review_date','desc')->get();
-        $userreview = review::where('review_id','3')
+        $userreview = book_review::where('review_id','3')
         ->where('user_id',session('userid'))
         ->get();
 
@@ -55,7 +55,7 @@ class reviewCont extends Controller
         ]);
         
         //create review
-        $review = new review;
+        $review = new book_review;
         
         $review->review = $request->input('body');
         $review->user_id = session('userid');
@@ -74,7 +74,7 @@ class reviewCont extends Controller
      */
     public function show($id)
     {
-        $review = review::find($id);
+        $review = book_review::find($id);
         return view('portal.showreview')->with('review',$review);
     }
 
