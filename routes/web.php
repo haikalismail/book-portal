@@ -15,6 +15,9 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/dashboard', 'PagesController@dashboard');
 
+Route::get('/bookCategory', 'BooksController@category');
+
+
 Route::resource('posts','PostController');
 
 Auth::routes();

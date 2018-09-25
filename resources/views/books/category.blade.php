@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.catapp')
 
 @section('content')	
-<?php use App\author; ?>
+<?php use App\book_author; ?>
 
 			<!--ITEMS-->
 				<div class="col-md-8 w3ls_mobiles_grid_right">
@@ -21,7 +21,7 @@
 									<h5><a href="/bookCategory/{{$book->book_id}}">{{$book->book_title}}</h5>
 									<div class="col-md-12">
 										<div class="rating1">
-											@php($authors = Author::select('*')
+											@php($authors = book_author::select('*')
 												->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
 												->where('book_id',$book->book_id)
 												->get())

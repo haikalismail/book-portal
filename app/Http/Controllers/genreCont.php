@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\genre;
+use App\book_genre;
 use DB;
-USE App\book;
+USE App\book_items;
 
 class genreCont extends Controller
 {
@@ -21,7 +21,7 @@ class genreCont extends Controller
 
     public function list()
     {
-        $genre = genre::all();
+        $genre = book_genre::all();
         return $genre;
 
     }
@@ -62,8 +62,9 @@ class genreCont extends Controller
         ->select('book_items.*','book_publisher.publisher_name','book_genre.*')
         ->where('book_genre.genre_id',$id)
         ->get();
+        $genre = book_genre::find($id);
 
-        return view ('books.category') -> with ('books', $books);
+        return view ('books.category') -> with ('books', $books)->with('genre',$genre);
         
     }
 
