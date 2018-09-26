@@ -5,7 +5,7 @@
                         <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> 
                         <i> / </i></li>
                         @if(isset($genre))
-                        <li><a href = "/{{$genre->genre_id}}"></span><li>{{$genre->genre_name}}</a>
+                        <li><a href = "/bookCategory/{{$genre->genre_id}}"></span><li>{{$genre->genre_name}}</a>
                         @else
                         stupid 
                         @endif       

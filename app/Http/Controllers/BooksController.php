@@ -78,45 +78,16 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        $booksingle = DB::table('book_items')
-        ->leftjoin('book_publisher', 'book_items.publisher_id','=','book_publisher.publisher_id')
-        ->where(['book_id'=>$id])
-        ->first();
-
-        $genre=DB::table('book_genre')
-        ->leftjoin('book_category', 'book_genre.genre_id', '=', 'book_category.genre_id')
-        ->where(['book_id'=>$id])
-        ->first();
-        
-        
-        $contributor = DB::table('book_contributor')
-        ->leftjoin('book_author', 'book_contributor.author_id','=','book_author.author_id')
-        ->where(['book_id'=>$id])
+        $books = DB::table('book_items')
+        ->leftjoin('book_publisher', 'book_publisher.publisher_id', '=', 'book_items.publisher_id')
+        ->leftjoin('book_category', 'book_category.book_id', '=', 'book_items.book_id')
+        ->leftjoin('book_genre', 'book_genre.genre_id', '=', 'book_category.genre_id')
+        ->select('book_items.*','book_publisher.publisher_name','book_genre.*')
+        ->where('book_genre.genre_id',$id)
         ->get();
+        $genre = book_genre::find($id);
 
-        $rating = book_rating::leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
-        ->where(['book_id'=>$id])
-        ->where('book_rating.user_id',session('userid'))
-        ->first();
-
-        $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
-        ->where('book_review.user_id','!=',session('userid'))
-        ->where('book_id',$id)
-        ->orderBy('review_date','desc')
-        ->paginate(10);
-        $userreviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
-        ->where('book_review.user_id',session('userid'))
-        ->where('book_review.book_id',$id)
-        ->first();
-
-        return view('books.singlebook') 
-        ->with('book', $booksingle)
-        ->with('authors',$contributor)
-        ->with('ratings',$rating)
-        ->with('reviews',$reviews)
-        ->with('userreviews',$userreviews)
-        ->with('genre', $genre)
-        ;
+        return view('books.category') -> with ('books', $books)->with('genre',$genre);
     }
   
     /**

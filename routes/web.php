@@ -15,7 +15,9 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/dashboard', 'PagesController@dashboard');
 
-Route::resource('bookCategory', 'BooksController');
+Route::get('/bookCategory', 'BooksController@index');
+
+Route::get('/bookCategory/{id}', 'BooksController@show');
 
 Route::resource('posts','PostController');
 
@@ -27,8 +29,10 @@ Route::any('/search','PagesController@search');
 
 Route::resource('bookgenre','genreCont');
 
-Route::get('/{id}', 'genreCont@show');
-
 Route::resource('review','reviewCont');
 
 Route::resource('rating','ratingCont');
+
+Route::resource('book','genreCont');
+
+Route::get('bookCategory/book/{id}', 'genreCont@show');
