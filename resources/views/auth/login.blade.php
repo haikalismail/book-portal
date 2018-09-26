@@ -3,8 +3,8 @@
             <div class="card">
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
+                        {{ csrf_field() }}
+                        
                         <div class="form-group row">
                             <label for="username" class="col-sm-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
@@ -20,16 +20,17 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="userpass" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="userpass" type="password" class="form-control{{ $errors->has('userpass') ? ' is-invalid' : '' }}" name="userpass" required>
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-                                @if ($errors->has('userpass'))
+                                @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('userpass') }}</strong>
+                                        <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
+
                             </div>
                         </div>
 

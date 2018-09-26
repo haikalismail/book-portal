@@ -1,6 +1,6 @@
 
 <!-- header modal -->
-@guest
+@if(Auth::guest())
 <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -52,86 +52,140 @@
   </div>
 </div>
 
-@else
-<li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        {{ Auth::user_reader()->user_fname }} <span class="caret"></span>
-    </a>
-
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="{{ route('logout') }}"
-           onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
-        </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-    </div>
-</li>
-@endguest
-
-<script>
-  //$('#myModal88').modal('show');
-</script>  
-<!-- header modal -->
 <!-- header -->
 <div class="header" id="home1">
-  <div class="container">
-    <div class="w3l_login">
-      <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-    </div>
-    <div class="w3l_logo" style="text-align: center;">
-      <h1><a href="index.html">Book Portal<span>Your Library. Your Way.</span></a></h1>
-    </div>
-    <div class="search">
-      <input class="search_box" type="checkbox" id="search_box">
-      <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-      <div class="search_form">
-        
-        <form action="{{action('PagesController@search')}}" method="POST" role="search">
-          {{ csrf_field() }}
-          <input type="text" name="q" placeholder="Search keywords...">
-          <input type="submit" value="Send">
-        
-          <!-- Dispay recorded database--> 
-          <div class="container">
-              @if(isset($details))
-              <h2>Search Results for <b> {{ $query }} </b> ...</h2>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Book Name</th>
-                    <th>ISBN</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                    <th>Unit Available</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($details as $items)
-                  <tr>
-                    <td>{{$items->book_id}}</td>
-                    <td>{{$items->book_title}}</td>
-                    <td>{{$items->book_isbn}}</td>
-                    <td>{{$items->book_location}}</td>
-                    <td>{{$items->book_status}}</td>
-                    <td>{{$items->book_unit}}</td>
-        
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              @elseif(isset($message))
-                <p>{{ $message }}</p>
+    <div class="container">
+      <div class="w3l_login">
+        <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+      </div>
+      <div class="w3l_logo" style="text-align: center;">
+        <h1><a href="index.html">Book Portal<span>Your Library. Your Way.</span></a></h1>
+      </div>
+      <div class="search">
+        <input class="search_box" type="checkbox" id="search_box">
+        <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+        <div class="search_form">
           
-              @endif
-            </div>
-        </form>
+          <form action="{{action('PagesController@search')}}" method="POST" role="search">
+            {{ csrf_field() }}
+            <input type="text" name="q" placeholder="Search keywords...">
+            <input type="submit" value="Send">
+          
+            <!-- Dispay recorded database--> 
+            <div class="container">
+                @if(isset($details))
+                <h2>Search Results for <b> {{ $query }} </b> ...</h2>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Book Name</th>
+                      <th>ISBN</th>
+                      <th>Location</th>
+                      <th>Status</th>
+                      <th>Unit Available</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($details as $items)
+                    <tr>
+                      <td>{{$items->book_id}}</td>
+                      <td>{{$items->book_title}}</td>
+                      <td>{{$items->book_isbn}}</td>
+                      <td>{{$items->book_location}}</td>
+                      <td>{{$items->book_status}}</td>
+                      <td>{{$items->book_unit}}</td>
+          
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                @elseif(isset($message))
+                  <p>{{ $message }}</p>
+            
+                @endif
+              </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- //header -->
+  <!-- //header -->
+
+@else
+<!-- header after login-->
+<div class="header" id="home1">
+    <div class="container">
+      <div class="w3l_login">
+        <a href="#" style="display: block;margin-left: auto;margin-right: auto"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span></a>
+      <p style="font-size:15px; ">Hi, {{ Auth::user()->user_fname }}</p>
+      </div>
+      
+      <div class="w3l_logo" style="text-align: center;">
+          <h1><a href="index.html">Book Portal<span>Your Library. Your Way.</span></a></h1>
+        </div>
+
+        <div class="search">
+            <input class="search_box" type="checkbox" id="search_box">
+            <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+            <div class="search_form">
+              
+              <form action="{{action('PagesController@search')}}" method="POST" role="search">
+                {{ csrf_field() }}
+                <input type="text" name="q" placeholder="Search keywords...">
+                <input type="submit" value="Send">
+              
+                <!-- Dispay recorded database--> 
+                <div class="container">
+                    @if(isset($details))
+                    <h2>Search Results for <b> {{ $query }} </b> ...</h2>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Book Name</th>
+                          <th>ISBN</th>
+                          <th>Location</th>
+                          <th>Status</th>
+                          <th>Unit Available</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($details as $items)
+                        <tr>
+                          <td>{{$items->book_id}}</td>
+                          <td>{{$items->book_title}}</td>
+                          <td>{{$items->book_isbn}}</td>
+                          <td>{{$items->book_location}}</td>
+                          <td>{{$items->book_status}}</td>
+                          <td>{{$items->book_unit}}</td>
+              
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                    @elseif(isset($message))
+                      <p>{{ $message }}</p>
+                
+                    @endif
+                  </div>
+              </form>
+            </div>
+          </div>
+
+      <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+          
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+  
+        <!--label style=" border-color=blue;"><a href="#" style="padding-left:20px;">logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></label-->
+      </div>
+    </div>
+  </div>
+  <!-- //header after login-->
+@endguest

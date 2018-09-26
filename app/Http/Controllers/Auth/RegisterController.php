@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -59,8 +59,8 @@ class RegisterController extends Controller
             'user_phone' => 'required|int',
             'username' => 'required|string|max:255',
             'user_email' => 'required|string|email|max:255|unique:user_reader',
-            'userpass' => 'required|string|min:6|confirmed',
-            'userpass_confirmation'=>'required||string|min:6',
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation'=>'required||string|min:6',
         ]);
     }
 
@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'user_fname' => $data['user_fname'],
             'user_lname' => $data['user_lname'],
             'username' => $data['username'],
-            'userpass' => Hash::make($data['userpass']),
+            'password' => Hash::make($data['password']),
             'user_dob' => $data['user_dob'],
             'user_email' => $data['user_email'],
             'user_phone' => $data['user_phone'],

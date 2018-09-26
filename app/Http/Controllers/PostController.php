@@ -24,29 +24,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        /*$author=book_author::all();
-        $category=book_category::all();
-        $contributor=book_contributor::all();
-        $genre=book_genre::all();
-        $items=book_items::all();
-        $publisher=book_publisher::all();
-        $rating=book_rating::all();
-        $record=read_record::all();
-        $review=book_review::all();
-        $reader=user_reader::all();
-        return view('posts.index')->with('reader',$reader,'author',$author);*/
 
-        return View::make('pages.dashboard')
-        ->with('author', book_author::all())
-        ->with('category', book_category::all())
-        ->with('contributor', book_contributor::all())
-        ->with('genre', book_genre::all())
-        ->with('item', book_items::all())
-        ->with('publisher', book_publisher::all())
-        ->with('rating', book_rating::all())
-        ->with('record', read_record::all())
-        ->with('review', book_review::all())
-        ->with('reader', user_reader::all());
+        
     }
 
     /**
