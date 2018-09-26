@@ -112,9 +112,9 @@ class PagesController extends Controller
                 ->join('book_category', 'book_category.genre_id', '=', 'book_genre.genre_id')
                 ->join('book_items','book_items.book_id','=','book_category.book_id')
                 ->where('user_reader.user_id',$id)
-                ->groupBy('book_genre.genre_id')
+                ->groupBy('book_genre.genre_name')
                 ->get();
-                //return $user;
+                //return count($user);
                 return view ('pages.dashboard') -> with ('user', $user);
 
     }

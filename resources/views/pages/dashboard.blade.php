@@ -21,30 +21,36 @@
 					<img src="{{('http://1.bp.blogspot.com/-53-Vqn14Hf8/UVEbaggKdtI/AAAAAAAAJr8/dv5p4LibRVk/s1600/most+recommended+ya+reads.jpg')}}" alt=" " class="img-responsive" />
 				</div>
 				
-				@foreach($user as $user)
+				@foreach($user as $users)
 				<div class="col-md-7 wthree_banner_bottom_right">
+					
 					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+						@for($i=0;$i<count($user);$i++)
+						@if($users->genre_id===$i)
 						<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#{{$user->genre_name}}" id="home-tab" role="tab" data-toggle="tab" aria-controls="home">{{$user->genre_name}}</a></li>
+						<li role="presentation" class="active"><a href="#{{$users->genre_name->find($i)}}" id="home-tab" role="tab" data-toggle="tab" aria-controls="home">{{$users->genre_name->find($i)}}</a></li>
 						</ul>
+						@endif
+						@endfor
+
 						
 						<div id="myTabContent" class="tab-content">
-							<div role="tabpanel" class="tab-pane fade active in" id="{{$user->genre_name}}" aria-labelledby="home-tab">
+							<div role="tabpanel" class="tab-pane fade active in" id="{{$users->genre_name}}" aria-labelledby="home-tab">
 									
 								<div class="agile_ecommerce_tabs">
-											
+									@for($i=0;$i<count($user);$i++)	
 									<div class="col-md-4 agile_ecommerce_tab_left">
 											
 										<div class="hs-wrapper">
-											<img src="{{$user->image_url}}" alt="No ImageS" />
+											<img src="{{$users->image_url}}" alt="No ImageS" />
 										</div>
 										
-										<h5><a href="#">{{$user->book_title}}</a></h5>
+										<h5><a href="#">{{$users->book_title}}</a></h5>
 										
 										<div class="simpleCart_shelfItem">
 												@php($authors = book_author::select('*')
 												->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
-												->where('book_id',$user->book_id)
+												->where('book_id',$users->book_id)
 												->get())
 					
 												<p>
@@ -55,7 +61,7 @@
 											<button type="submit" class="w3ls-cart" href='#'>View More</button> 
 										</div>
 									</div>
-									
+									@endfor
 									<div class="clearfix"> </div>
 								</div>
 								
@@ -65,7 +71,6 @@
 						
 					</div>
 				</div>
-				
 				@endforeach	
 				<div class="clearfix"> </div>
 			</div>
