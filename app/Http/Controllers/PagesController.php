@@ -6,6 +6,7 @@ use View;
 use DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use App\book_author;
 use App\book_category;
@@ -105,17 +106,16 @@ class PagesController extends Controller
 
     public function dashboard()
     {
-       $id = Auth::user()->user_id;
+        $id = Auth::user()->user_id;
         $user = DB::table('user_preference')
                 ->join('user_reader', 'user_reader.user_id', '=', 'user_preference.user_id')
                 ->join('book_genre', 'book_genre.genre_id', '=', 'user_preference.genre_id')
-                ->join('book_category', 'book_category.genre_id', '=', 'book_genre.genre_id')
-                ->join('book_items','book_items.book_id','=','book_category.book_id')
                 ->where('user_reader.user_id',$id)
-                ->groupBy('book_genre.genre_name')
+                //->groupBy('book_genre.user_id')
                 ->get();
-                //return count($user);
-                return view ('pages.dashboard') -> with ('user', $user);
+                //return $user;
+        
+        return view ('pages.dashboard') -> with ('user', $user);
 
     }
 

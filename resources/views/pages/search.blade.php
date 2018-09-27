@@ -2,7 +2,6 @@
 
 @section('content')
 @include('inc.header')
-@include('inc.navigation')
 <?php use App\book_author; ?>
 <!-- Dispay recorded database--> 
 <br><br>
