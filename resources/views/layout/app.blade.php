@@ -107,7 +107,6 @@
 </head> 
 <body>
 	@include('inc.messages')
-	@yield('headerAfterLogin')
 	@yield('content')
 </body>
 </html>

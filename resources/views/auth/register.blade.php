@@ -84,14 +84,14 @@
 
                         <!--userpass-->
                         <div class="form-group row">
-                                <label for="userpass" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="userpass" type="password" class="form-control{{ $errors->has('userpass') ? ' is-invalid' : '' }}" name="userpass" required>
+                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
     
-                                    @if ($errors->has('userpass'))
+                                    @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('userpass') }}</strong>
+                                            <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -99,10 +99,10 @@
                         
                         <!--confirm userpass-->
                         <div class="form-group row">
-                            <label for="userpass-confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="userpass-confirmation" type="password" class="form-control" name="userpass_confirmation" required>
+                                <input id="password-confirmation" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
                         
@@ -184,26 +184,26 @@
                         <!--user_category--> 
                         <fieldset>  
                             <label for="user_category" class="col-md-4 col-form-label text-md-right">{{ __('Preference category') }}</label><br><br>
-                            <input type="checkbox" name="user_category" value="Sci-fi" onclick="return Validateuser_categorySelection();">Science Fiction<br>  
-                            <input type="checkbox" name="user_category" value="drama" onclick="return Validateuser_categorySelection();">Drama<br>  
-                            <input type="checkbox" name="user_category" value="action" onclick="return Validateuser_categorySelection();">Action and Adventure<br>
-                            <input type="checkbox" name="user_category" value="romance" onclick="return Validateuser_categorySelection();">Romance<br>
-                            <input type="checkbox" name="user_category" value="mystery" onclick="return Validateuser_categorySelection();">Mystery<br>
-                            <input type="checkbox" name="user_category" value="horror" onclick="return Validateuser_categorySelection();">Horror<br>
-                            <input type="checkbox" name="user_category" value="health" onclick="return Validateuser_categorySelection();">Health<br>
-                            <input type="checkbox" name="user_category" value="guide" onclick="return Validateuser_categorySelection();">Guide<br>
-                            <input type="checkbox" name="user_category" value="travel" onclick="return Validateuser_categorySelection();">Travel<br>
-                            <input type="checkbox" name="user_category" value="religious" onclick="return Validateuser_categorySelection();">Religious<br>
-                            <input type="checkbox" name="user_category" value="history" onclick="return Validateuser_categorySelection();">History<br>
-                            <input type="checkbox" name="user_category" value="comic" onclick="return Validateuser_categorySelection();">Comics<br>
-                            <input type="checkbox" name="user_category" value="jornal" onclick="return Validateuser_categorySelection();">Journals<br>
-                            <input type="checkbox" name="user_category" value="biographies" onclick="return Validateuser_categorySelection();">Biographies<br>
-                            <input type="checkbox" name="user_category" value="autobiographies" onclick="return Validateuser_categorySelection();">Autobiographies<br>
-                            <input type="checkbox" name="user_category" value="fantasy" onclick="return Validateuser_categorySelection();">Fantasy<br>  
+                            <input type="checkbox" name="user_category" id="user_category" value="Sci-fi" onclick="return Validateuser_categorySelection();">Science Fiction<br>  
+                            <input type="checkbox" name="user_category" id="user_category" value="drama" onclick="return Validateuser_categorySelection();">Drama<br>  
+                            <input type="checkbox" name="user_category" id="user_category" value="action" onclick="return Validateuser_categorySelection();">Action and Adventure<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="romance" onclick="return Validateuser_categorySelection();">Romance<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="mystery" onclick="return Validateuser_categorySelection();">Mystery<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="horror" onclick="return Validateuser_categorySelection();">Horror<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="health" onclick="return Validateuser_categorySelection();">Health<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="guide" onclick="return Validateuser_categorySelection();">Guide<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="travel" onclick="return Validateuser_categorySelection();">Travel<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="religious" onclick="return Validateuser_categorySelection();">Religious<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="history" onclick="return Validateuser_categorySelection();">History<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="comic" onclick="return Validateuser_categorySelection();">Comics<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="jornal" onclick="return Validateuser_categorySelection();">Journals<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="biographies" onclick="return Validateuser_categorySelection();">Biographies<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="autobiographies" onclick="return Validateuser_categorySelection();">Autobiographies<br>
+                            <input type="checkbox" name="user_category" id="user_category" value="fantasy" onclick="return Validateuser_categorySelection();">Fantasy<br>  
                              
                         </fieldset>
                         
-                        <!--check count of user_category selected-->
+                        <!--check count of user_category selected
                         <script type="text/javascript">  
                             function Validateuser_categorySelection()  
                             {  
@@ -214,13 +214,13 @@
                                             if(checkboxes[i].checked)  
                                                     numberOfCheckedItems++;  
                                     }  
-                                    if(numberOfCheckedItems > 5)  
+                                    if(numberOfCheckedItems > 1)  
                                     {  
                                             alert("You can't select more than five Category!");  
                                             return false;  
                                     }  
                             }  
-                        </script>
+                        </script>-->
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

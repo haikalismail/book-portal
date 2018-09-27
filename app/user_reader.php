@@ -12,9 +12,11 @@ class user_reader extends Eloquent  implements Authenticatable
     protected $table='user_reader';
     protected $primaryKey='user_id';
 
-
+    protected $fillable = [
+        'user_id','user_fname','user_lname','user_dob','user_phone','username','user_address','user_state','user_city', 'user_email', 'password',
+    ];
 
     protected $hidden = [
-        'userpass',
+        'password',
     ];
 }

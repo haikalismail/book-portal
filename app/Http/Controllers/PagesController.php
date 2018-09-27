@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Support\Facades\Input;
 use View;
 use DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\book_author;
 use App\book_category;
@@ -27,62 +27,6 @@ class PagesController extends Controller
      */
     public function index()
     {
-        /*$author=book_author::all();
-        $category=book_category::all();
-        $contributor=book_contributor::all();
-        $genre=book_genre::all();
-        $items=book_items::all();
-        $publisher=book_publisher::all();
-        $rating=book_rating::all();
-        $record=read_record::all();
-        $review=book_review::all();
-        $reader=user_reader::all();
-        return view('posts.index')->with('reader',$reader,'author',$author);*/
-
-        /*$book_author = \App\book_author::with(['book'])->get();
-
-        return View::make('posts.show')->with('book_author',$book_author);*/
-
-        /*return View::make('pages.index')
-        ->with('book_author', book_author::all())
-        ->with('book_category', book_category::all())
-        ->with('book_contributor', book_contributor::all())
-        ->with('book_genre', book_genre::all())
-        ->with('book_item', book_items::all())
-        ->with('book_publisher', book_publisher::all())
-        ->with('book_rating', book_rating::all())
-        ->with('read_record', read_record::all())
-        ->with('book_review', book_review::all())
-        ->with('user_reader', user_reader::all());*/
-
-       /* $items = DB :: table('book_items')
-                ->join('book_publisher','book_publisher.publisher_id','=','book_items.publisher_id')
-                ->get();
-        
-        $rating = DB :: table('book_rating')
-                ->join('book_items','book_items.book_id','=','book_rating.book_id')
-                ->get();
-        
-        $category = DB :: table('book_category')
-                    ->join('book_genre','book_genre.genre_id','=','book_category.genre_id')
-                    ->join('book_items','book_items.book_id','=','book_category.book_id')
-                    ->get();
-
-        $author = DB :: table('book_contributor')
-                ->join('book_items','book_items.book_id','=','book_contributor.book_id')
-                ->join('book_author','book_author.author_id','=','book_contributor.author_id')
-                ->get();*/
-        
-        //$item_rating = array_combine($items,$rating);
-        //$category_author = array_combine($category,$author);
-        //$book = array_combine($item_rating,$category_author);
-        //return $author;
-
-        /*return view('pages.index')->with('items',$items)
-                                  ->with('rating',$rating)
-                                  ->with('category',$category)
-                                  ->with('author',$author);*/
-        
                                   $books = DB::table('book_items')
                                   ->leftjoin('book_publisher', 'book_publisher.publisher_id', '=', 'book_items.publisher_id')
                                   ->leftjoin('book_category', 'book_category.book_id', '=', 'book_items.book_id')
@@ -161,7 +105,18 @@ class PagesController extends Controller
 
     public function dashboard()
     {
-        return view('pages.dashboard');
+       $id = Auth::user()->user_id;
+        $user = DB::table('user_preference')
+                ->join('user_reader', 'user_reader.user_id', '=', 'user_preference.user_id')
+                ->join('book_genre', 'book_genre.genre_id', '=', 'user_preference.genre_id')
+                ->join('book_category', 'book_category.genre_id', '=', 'book_genre.genre_id')
+                ->join('book_items','book_items.book_id','=','book_category.book_id')
+                ->where('user_reader.user_id',$id)
+                ->groupBy('book_genre.genre_name')
+                ->get();
+                //return count($user);
+                return view ('pages.dashboard') -> with ('user', $user);
+
     }
 
     public function search()
