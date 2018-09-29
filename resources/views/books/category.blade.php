@@ -12,7 +12,7 @@
 							<div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
 								<div class="agile_ecommerce_tab_left mobiles_grid">
 									<div class="hs-wrapper hs-wrapper2">
-										<img src="{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
+										<img src="/{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 									</div>
 									<h5><a href="/bookCategory/{{$book->book_id}}">{{$book->book_title}}</h5>
 									<div class="col-md-12">

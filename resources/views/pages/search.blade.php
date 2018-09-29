@@ -24,7 +24,7 @@
             @foreach($details as $items)
             <tr>
               <td>{{$items->book_id}}</td>
-              <td><a href='/bookCategory/{{$items->book_id}}'>{{$items->book_title}}</a></td>
+              <td><a href='/bookCategory/book/{{$items->book_id}}'>{{$items->book_title}}</a></td>
               <td>{{$items->book_isbn}}</td>
               <td>{{$items->book_location}}</td>
               <td>{{$items->book_status}}</td>
