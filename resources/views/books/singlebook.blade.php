@@ -23,16 +23,16 @@
 				<!--INSERT RATING HERE-->
 				<!--update the id whenver rating_id is obtainable-->
 				{!! Form::open(['id'=>'rating-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
-				<h4>Rating</h4>
+				<h4>Avg Rating {{round($avgratings->average,2)}} </h4>
 				<div class="rating1">
-						{{Form::label('title','Rating')}}
-						
-				
+						{{Form::label('title','Your Rating')}}
+						<p>{{$ratings->rating}}</p>
+				<br/>
 				<span class="starRating">
 					{{Form::hidden('_method','PUT')}}
 					<input id="rating5" type="radio" name="rating" value="5" onchange="this.form.submit();">
 					<label for="rating5" >5</label>
-					<input id="rating4" type="radio" name="rating" value="4"  onchange="this.form.submit();">
+					<input id="rating4" type="radio" name="rating" value="4" onchange="this.form.submit();">
 					<label for="rating4" >4</label>
 					<input id="rating3" type="radio" name="rating" value="3" onchange="this.form.submit();">
 					<label for="rating3" >3</label>
@@ -42,6 +42,7 @@
 					<label for="rating1" >1</label>
 					
 				</span>
+				
 				</div>	
 				{!! Form::close() !!}
 			
@@ -60,7 +61,8 @@
 						@endif
 						
 						@if(!is_null($ratings))
-						<br/>rating : {{$ratings->rating}} <!--clear this line later when star can be display-->
+						
+						<!--clear this line later when star can be display-->
 						@endif
 					</h6>
 							<p>ISBN :		{{$book->book_isbn}}</p>

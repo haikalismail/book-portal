@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2018 at 08:34 AM
+-- Generation Time: Sep 27, 2018 at 08:49 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `nofk_lib_sys`
 --
-CREATE DATABASE IF NOT EXISTS `nofk_lib_sys` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `nofk_lib_sys`;
 
 -- --------------------------------------------------------
 
@@ -229,6 +227,18 @@ CREATE TABLE `read_record` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_preference`
+--
+
+CREATE TABLE `user_preference` (
+  `preference_id` int(5) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `genre_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_reader`
 --
 
@@ -258,6 +268,7 @@ CREATE TABLE `user_reader` (
 
 INSERT INTO `user_reader` (`user_id`, `user_fname`, `user_lname`, `username`, `userpass`, `user_dob`, `user_category`, `user_email`, `user_phone`, `user_address`, `user_city`, `user_state`, `user_status`, `login_timestamp`, `updated_at`, `created_at`, `remember_token`) VALUES
 (111, 'Alice', 'Graham', 'ash', '$2y$10$YdZCTN/UuzFI/D7KJssSZu/vcVUW843wdVVVN43z/61TOpLngLzmu', '2018-09-04', 'Student', 'ash@gg.com', '1123332211', 'Jln Kg', 'Serdang', 'Selangor', 'active', NULL, '2018-09-25 06:59:16', '2018-09-25 06:59:16', ''),
+(3102, 'tee', 'sy', 'tsyew', '', '1997-09-19', 'Student', 'tsy1231@gg.com', '0103322112', 'ktp', 'upm', 'selangor', 'active', NULL, '2018-09-27 06:46:49', '2018-09-27 06:46:49', 'ueJaiP7IAFFR7gP1POoScl23DMHWEZVIsr2lFSG38OjzB4n3kY3X45uCe1MQ'),
 (4444, 'Micheal', 'Yoh', 'micheal', '123321', '2016-06-12', 'working', 'micheal@gg.com', '198888222', '10 , Jalan Kedah', 'Alor Setar', 'Kedah', 'Active', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
 (5511, 'tee', 'sy', 'tsy', '$2y$10$Wzxh/lZhOLt8qYqo4lP0xuSjS4mF4lHf7ObHJgYvCpljnzdgHNuDi', '2018-09-04', 'Student', 'tsy@gg.com', '123332221', 'ktp', 'upm', 'selangor', 'active', NULL, '2018-09-25 15:55:54', '2018-09-25 15:55:54', 'LllM5auC29V92z5YkbbxdxlNEllTAgNjT2gAGv3UR03mApJnUoRvZOrpRX03'),
 (5555, 'Rachel', 'Leong', 'rachel', '123123', '2017-10-18', 'student', 'rachel@gmail.com', '132211221', 'Uni Pm', 'serdang', 'Selangor', 'Active', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
@@ -337,6 +348,12 @@ ALTER TABLE `read_record`
   ADD KEY `fk_record_user` (`user_id`);
 
 --
+-- Indexes for table `user_preference`
+--
+ALTER TABLE `user_preference`
+  ADD PRIMARY KEY (`preference_id`);
+
+--
 -- Indexes for table `user_reader`
 --
 ALTER TABLE `user_reader`
@@ -399,6 +416,12 @@ ALTER TABLE `book_review`
 --
 ALTER TABLE `read_record`
   MODIFY `record_id` int(7) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_preference`
+--
+ALTER TABLE `user_preference`
+  MODIFY `preference_id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_reader`

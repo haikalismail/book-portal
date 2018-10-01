@@ -78,6 +78,11 @@ class genreCont extends Controller
     ->where('book_rating.user_id',session('userid'))
     ->first();
 
+    $avgrating = book_rating::select(DB::raw('avg(rating) AS average'))
+    ->leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
+    ->where(['book_id'=>$id])
+    ->first();
+
     $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
     ->where('book_review.user_id','!=',session('userid'))
     ->where('book_id',$id)
@@ -92,6 +97,7 @@ class genreCont extends Controller
     ->with('book', $booksingle)
     ->with('authors',$contributor)
     ->with('ratings',$rating)
+    ->with('avgratings',$avgrating)
     ->with('reviews',$reviews)
     ->with('userreviews',$userreviews)
     ->with('genre', $genre)
