@@ -22,12 +22,16 @@
 
 				<!--INSERT RATING HERE-->
 				<!--update the id whenver rating_id is obtainable-->
-				{!! Form::open(['id'=>'rating-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
+				{!! Form::open(['id'=>'review-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
 				<h4>Avg Rating {{round($avgratings->average,2)}} </h4>
 				<div class="rating1">
 						{{Form::label('title','Your Rating')}}
+						@if(!is_null($ratings))
 						<p>{{$ratings->rating}}</p>
-				<br/>
+						
+						@else
+						<p></p>
+						@endif
 				<span class="starRating">
 					{{Form::hidden('_method','PUT')}}
 					<input id="rating5" type="radio" name="rating" value="5" onchange="this.form.submit();">
@@ -94,9 +98,7 @@
 						
 						@foreach($reviews as $review)
 						<div class="additional_info_sub_grids">
-							<div class="col-xs-2 additional_info_sub_grid_left">
-								<img src="images/t2.png" alt="no pict" class="img-responsive" />
-							</div>
+						
 							<div class="col-xs-10 additional_info_sub_grid_right">
 								<div class="additional_info_sub_grid_rightl">
 									<h4>{{$review->user_fname}}</h4>
@@ -132,9 +134,10 @@
 						{{ $reviews->links() }}
 						<div class="review_grids">
 							@if(is_null($userreviews))
-								<h5>Add A Review</h5>
-									{!! Form::open(['action'=>'reviewCont@store','method'=>'POST']) !!}
-									
+								<h5>Add A Review </h5>
+								
+									{!! Form::open(['action'=>['reviewCont@update',$book->book_id],'method'=>'POST']) !!}
+									{{Form::hidden('_method','PUT')}}
 									<div class='form-group'>
 											{{Form::label('body','Write your Review')}}
 											{{Form::textarea('body','',['id' => 'article-ckeditor' , 'class'=>'form-control' , 'placeholder'=> 'Your review body'])}}

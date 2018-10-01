@@ -1,4 +1,4 @@
-{{Session::put('userid', '4444')}}<!--temp user session -->
+<!--temp user session -->
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
