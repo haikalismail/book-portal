@@ -141,13 +141,9 @@
 									<div class='form-group'>
 											{{Form::label('review','Write your Review')}}
 											{{Form::textarea('review','',['id' => 'article-ckeditor' , 'class'=>'form-control' , 'placeholder'=> 'Your review body','required' => 'required'])}}
-											@if ($errors->has('user_lname'))
-												<span class="invalid-feedback" role="alert">
-													<strong>{{ $errors->first('review') }}</strong>
-												</span>
-                                    		@endif
+											
 									</div>
-									{{form::submit('Submit')}}
+									{{form::submit('Save')}}
 									{!! Form::close() !!}
 							@else
 								<div class="additional_info_sub_grids">
