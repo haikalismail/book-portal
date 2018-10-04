@@ -60,6 +60,7 @@ $(".scroll").click(function(event){
         });
     });
 </script>
+@include('inc.messages')
     @include('inc.header')
 
     <body>
@@ -70,7 +71,8 @@ $(".scroll").click(function(event){
 		
 		<div class="container">
 			<div class="w3ls_mobiles_grids">
-		        @include('inc.list')
+                @include('inc.list')
+                
                 @yield('content')
            
                 <div class="clearfix"> 

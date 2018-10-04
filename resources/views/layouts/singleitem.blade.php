@@ -62,7 +62,7 @@ $(".scroll").click(function(event){
         });
     });
 </script>
-
+@include('inc.messages')
 @include('inc.header')
 
 <body>

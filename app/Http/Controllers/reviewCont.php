@@ -55,13 +55,13 @@ class reviewCont extends Controller
     public function store(Request $request , $id)
     {
         $this->validate($request,[
-            'body'=>'required',
+            'review'=>'required',
         ]);
         
         //create review
         $review = new book_review;
         
-        $review->review = $request->input('body');
+        $review->review = $request->input('review');
         $review->user_id = Session::get('userid');
         $review->book_id = $id;
         $review->timestamps = false;
@@ -147,7 +147,7 @@ class reviewCont extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'body'=>'required',
+            'review'=>'required',
         ]);
         
         if (book_review::where('book_id', '=', $id)
@@ -157,7 +157,7 @@ class reviewCont extends Controller
         //create review
         $review = new book_review;
         
-        $review->review = $request->input('body');
+        $review->review = $request->input('review');
         $review->user_id = Session::get('userid');
         $review->book_id = $id;
         $review->timestamps = false;

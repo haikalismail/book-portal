@@ -139,8 +139,13 @@
 									{!! Form::open(['action'=>['reviewCont@update',$book->book_id],'method'=>'POST']) !!}
 									{{Form::hidden('_method','PUT')}}
 									<div class='form-group'>
-											{{Form::label('body','Write your Review')}}
-											{{Form::textarea('body','',['id' => 'article-ckeditor' , 'class'=>'form-control' , 'placeholder'=> 'Your review body'])}}
+											{{Form::label('review','Write your Review')}}
+											{{Form::textarea('review','',['id' => 'article-ckeditor' , 'class'=>'form-control' , 'placeholder'=> 'Your review body','required' => 'required'])}}
+											@if ($errors->has('user_lname'))
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $errors->first('review') }}</strong>
+												</span>
+                                    		@endif
 									</div>
 									{{form::submit('Submit')}}
 									{!! Form::close() !!}
