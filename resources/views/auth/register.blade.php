@@ -1,4 +1,5 @@
 
+<?php use App\book_genre; ?>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -6,21 +7,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
-                        <!--user id-->
-                        <div class="form-group row">
-                            <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('User Id') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="user_id" type="text" class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" name="user_id" value="{{ old('user_id') }}" required autofocus>
-
-                                @if ($errors->has('user_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('user_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <!--first name-->
                         <div class="form-group row">
@@ -184,23 +170,12 @@
                         <!--user_category--> 
                         <fieldset>  
                             <label for="user_category" class="col-md-4 col-form-label text-md-right">{{ __('Preference category') }}</label><br><br>
-                            <input type="checkbox" name="user_category" id="user_category" value="Sci-fi" onclick="return Validateuser_categorySelection();">Science Fiction<br>  
-                            <input type="checkbox" name="user_category" id="user_category" value="drama" onclick="return Validateuser_categorySelection();">Drama<br>  
-                            <input type="checkbox" name="user_category" id="user_category" value="action" onclick="return Validateuser_categorySelection();">Action and Adventure<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="romance" onclick="return Validateuser_categorySelection();">Romance<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="mystery" onclick="return Validateuser_categorySelection();">Mystery<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="horror" onclick="return Validateuser_categorySelection();">Horror<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="health" onclick="return Validateuser_categorySelection();">Health<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="guide" onclick="return Validateuser_categorySelection();">Guide<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="travel" onclick="return Validateuser_categorySelection();">Travel<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="religious" onclick="return Validateuser_categorySelection();">Religious<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="history" onclick="return Validateuser_categorySelection();">History<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="comic" onclick="return Validateuser_categorySelection();">Comics<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="jornal" onclick="return Validateuser_categorySelection();">Journals<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="biographies" onclick="return Validateuser_categorySelection();">Biographies<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="autobiographies" onclick="return Validateuser_categorySelection();">Autobiographies<br>
-                            <input type="checkbox" name="user_category" id="user_category" value="fantasy" onclick="return Validateuser_categorySelection();">Fantasy<br>  
-                             
+                            @php($book_genre = book_genre::select('*')
+                                                ->get())
+                            
+                            @foreach($book_genre as $book_genre)
+                                <input type="checkbox" name="user_category" id="user_category" value="{{$book_genre->genre_name}}" onclick="return Validateuser_categorySelection();">{{$book_genre->genre_name}}<br>
+                            @endforeach
                         </fieldset>
                         
                         <!--check count of user_category selected
