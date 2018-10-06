@@ -34,15 +34,15 @@
 						@endif
 				<span class="starRating">
 					{{Form::hidden('_method','PUT')}}
-					<input id="rating5" type="radio" name="rating" value="5" onchange="this.form.submit();">
+					<input id="rating5" type="radio" name="rating" value="5" onchange="updateRating()">
 					<label for="rating5" >5</label>
-					<input id="rating4" type="radio" name="rating" value="4" onchange="this.form.submit();">
+					<input id="rating4" type="radio" name="rating" value="4" onchange="updateRating()">
 					<label for="rating4" >4</label>
-					<input id="rating3" type="radio" name="rating" value="3" onchange="this.form.submit();">
+					<input id="rating3" type="radio" name="rating" value="3" onchange="updateRating()">
 					<label for="rating3" >3</label>
-					<input id="rating2" type="radio" name="rating" value="2" onchange="this.form.submit();">
+					<input id="rating2" type="radio" name="rating" value="2" onchange="updateRating()">
 					<label for="rating2"> 2</label>
-					<input id="rating1" type="radio" name="rating" value="1" onchange="this.form.submit();">
+					<input id="rating1" type="radio" name="rating" value="1" onchange="updateRating()">
 					<label for="rating1" >1</label>
 					
 				</span>
@@ -136,7 +136,7 @@
 							@if(is_null($userreviews))
 								<h5>Add A Review </h5>
 								
-									{!! Form::open(['action'=>['reviewCont@update',$book->book_id],'method'=>'POST']) !!}
+									{!! Form::open(['action'=>['reviewCont@update',$book->book_id],'method'=>'POST', 'onsubmit'=>'event.preventDefault(); updateReview()']) !!}
 									{{Form::hidden('_method','PUT')}}
 									<div class='form-group'>
 											{{Form::label('review','Write your Review')}}
@@ -177,6 +177,28 @@
 	
 
 	<!-- //single -->  
-	
+	<script>
+		function updateRating() {
+			var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+			if(!loggedIn){
+				$("input:radio").removeAttr("checked");
+				$('#myModal88').modal('show');
+			}
+			else{
+				this.form.submit();
+			}
+		}
 
+		function updateReview() {
+			var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+			if(!loggedIn){
+				
+				$('#myModal88').modal('show');
+				return false;
+			}
+			else{
+				this.form.submit();
+			}
+		}
+	</script>
 @endsection

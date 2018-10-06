@@ -136,30 +136,31 @@ class ratingCont extends Controller
         $this->validate($request,[
             'rating'=>'required',
         ]);
+            
         
-        if (book_rating::where('book_id', '=', $id)
-        ->where('user_id',Session::get('userid'))
-        ->exists()) {
-            // user found
-        //create rating
-        
-        $ratings = book_rating::where('book_id', '=', $id)
-        ->where('user_id',Session::get('userid'))
-        ->first();
-        $ratings->rating = $request->input('rating');
-        $ratings->user_id = Session::get('userid');
-        $ratings->book_id = "$id";
-        $ratings->timestamps = false;
-        $ratings->save();
-        
-        return redirect()->action('ratingCont@show',$id);
-        }
-        else{
-            self::store($request,$id);
+            if (book_rating::where('book_id', '=', $id)
+            ->where('user_id',Session::get('userid'))
+            ->exists()) {
+                // user found
+            //create rating
+            
+            $ratings = book_rating::where('book_id', '=', $id)
+            ->where('user_id',Session::get('userid'))
+            ->first();
+            $ratings->rating = $request->input('rating');
+            $ratings->user_id = Session::get('userid');
+            $ratings->book_id = "$id";
+            $ratings->timestamps = false;
+            $ratings->save();
             
             return redirect()->action('ratingCont@show',$id);
-        }
-
+            }
+            else{
+                self::store($request,$id);
+                
+                return redirect()->action('ratingCont@show',$id);
+            }
+        
     }
 
     /**
