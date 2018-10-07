@@ -112,13 +112,52 @@
   </div>
   <!-- //header -->
 
-@else
+  <!-- navigation -->
+<div class="navigation">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header nav_2">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div> 
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav">
+						<li><a href="/" >Home</a></li>	
+						
+						<li><a href="/bookCategory" >Genre</a></li>						
+
+						<li><a href="#">Recommended Book</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- //navigation -->
+
+  @else
 <!-- header after login-->
 <div class="header" id="home1">
     <div class="container">
       <div class="w3l_login">
-        <a href="#" style="display: block;margin-left: auto;margin-right: auto"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span></a>
-      <p style="font-size:15px; ">Hi, {{ Auth::user()->user_fname }}</p>
+        <div class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="display: block;margin-left: auto;margin-right: auto"><span class="glyphicon glyphicon-user" aria-hidden="true" ></span></a>
+        <div class="dropdown-content">
+          <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true" style="fill: #C2C2C2">logout</span>
+          </a>
+          
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+          </div></div>
+        <p style="font-size:15px; ">Hi,{{Auth::user()->user_fname}}</p>
       </div>
       
       <div class="w3l_logo" style="text-align: center;">
@@ -173,19 +212,38 @@
             </div>
           </div>
 
-      <a href="{{ route('logout') }}"
-             onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-          </a>
-          
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-          </form>
+      
   
         <!--label style=" border-color=blue;"><a href="#" style="padding-left:20px;">logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></label-->
       </div>
     </div>
   </div>
   <!-- //header after login-->
+
+  <!-- navigation -->
+<div class="navigation">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header nav_2">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div> 
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav">
+						<li><a href="/dashboard" >Home</a></li>	
+						
+						<li><a href="/bookCategory" >Genre</a></li>						
+
+						<li><a href="#">Recommended Book</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- //navigation -->
 @endguest

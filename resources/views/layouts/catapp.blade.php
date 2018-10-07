@@ -61,7 +61,6 @@ $(".scroll").click(function(event){
     });
 </script>
     @include('inc.header')
-    @include('inc.navigation')
 
     <body>
 

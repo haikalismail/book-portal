@@ -14,7 +14,7 @@
 									<div class="hs-wrapper hs-wrapper2">
 										<img src="/{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 									</div>
-									<h5><a href="/bookCategory/{{$book->book_id}}">{{$book->book_title}}</h5>
+									<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 									<div class="col-md-12">
 										<div class="rating1">
 											@php($authors = book_author::select('*')
