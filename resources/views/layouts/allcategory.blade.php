@@ -1,3 +1,4 @@
+@include('inc.messages')
 @include('inc.header')
 @include('inc.navbar')
 

@@ -72,8 +72,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $uid=self::getunique();
         return user_reader::create([
-            'user_id'=>$data['user_id'],
+            'user_id'=>$uid,
             'user_fname' => $data['user_fname'],
             'user_lname' => $data['user_lname'],
             'username' => $data['username'],
@@ -85,5 +86,51 @@ class RegisterController extends Controller
             'user_city'=>$data['user_city'],
             'user_state'=>$data['user_state']
         ]);
+
+        
+    }
+
+    
+    function getToken($length)
+    {
+        $token = "";
+        
+        $codeAlphabet= "0123456789";
+        $max = strlen($codeAlphabet); // edited
+
+        for ($i=0; $i < $length; $i++) {
+            $token .= $codeAlphabet[self::crypto_rand_secure(0, $max-1)];
+        }
+
+        
+        return $token;
+    }
+
+    function getunique(){
+        $token= self::getToken(5);// change the value to the length u want
+        $temp = user_reader::find($token);
+        if(is_null($temp)){
+            //change the query to check with id that exist in database
+            return $token;
+        }
+        else {
+            $token= self::getunique();
+            return $token;
+
+        }
+    }
+    function crypto_rand_secure($min, $max)
+    {
+        $range = $max - $min;
+        if ($range < 1) return $min; // not so random...
+        $log = ceil(log($range, 2));
+        $bytes = (int) ($log / 8) + 1; // length in bytes
+        $bits = (int) $log + 1; // length in bits
+        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } while ($rnd > $range);
+        return $min + $rnd;
     }
 }

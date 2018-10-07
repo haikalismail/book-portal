@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class user_preference extends Model
 {
     protected $table='user_preference';
+    public $primaryKey='preference_id';
+
 }

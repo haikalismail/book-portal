@@ -31,8 +31,7 @@ Route::resource('bookgenre','genreCont');
 
 Route::resource('review','reviewCont');
 
-Route::resource('rating','ratingCont');
+Route::resource('book','ratingCont');
 
-Route::resource('book','genreCont');
+Route::get('bookCategory/book/{id}', 'ratingCont@show');
 
-Route::get('bookCategory/book/{id}', 'genreCont@show');
