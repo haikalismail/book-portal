@@ -1,12 +1,12 @@
-{{Session::put('userid', '4444')}}<!--temp user session -->
+<!--temp user session -->
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--
+
     <link rel="stylesheet" href={{asset('css/app.css')}}>
--->
+
 
 <link href={{asset('css/bootstrap.css')}} rel="stylesheet" type="text/css" media="all" />
 <link href={{asset('css/style.css')}} rel="stylesheet" type="text/css" media="all" /> 
@@ -62,7 +62,7 @@ $(".scroll").click(function(event){
         });
     });
 </script>
-
+@include('inc.messages')
 @include('inc.header')
 
 <body>

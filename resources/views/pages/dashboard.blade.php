@@ -103,6 +103,7 @@
 									</div>
 									<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</a></h5>
 								@endforeach
+								
 								<div class="simpleCart_shelfItem">
 										@php($authors = book_author::select('*')
 										->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')

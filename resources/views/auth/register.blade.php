@@ -174,7 +174,7 @@
                                                 ->get())
                             
                             @foreach($book_genre as $book_genre)
-                                <input type="checkbox" name="user_category" id="user_category" value="{{$book_genre->genre_name}}" onclick="return Validateuser_categorySelection();">{{$book_genre->genre_name}}<br>
+                                <input type="checkbox" name="user_category[]" id="user_category" value="{{$book_genre->genre_name}}" onclick="return Validateuser_categorySelection();">{{$book_genre->genre_name}}<br>
                             @endforeach
                         </fieldset>
                         

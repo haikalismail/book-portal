@@ -22,23 +22,27 @@
 
 				<!--INSERT RATING HERE-->
 				<!--update the id whenver rating_id is obtainable-->
-				{!! Form::open(['id'=>'rating-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
+				{!! Form::open(['id'=>'review-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
 				<h4>Avg Rating {{round($avgratings->average,2)}} </h4>
 				<div class="rating1">
 						{{Form::label('title','Your Rating')}}
+						@if(!is_null($ratings))
 						<p>{{$ratings->rating}}</p>
-				<br/>
+						
+						@else
+						<p></p>
+						@endif
 				<span class="starRating">
 					{{Form::hidden('_method','PUT')}}
-					<input id="rating5" type="radio" name="rating" value="5" onchange="this.form.submit();">
+					<input id="rating5" type="radio" name="rating" value="5" onchange="updateRating()">
 					<label for="rating5" >5</label>
-					<input id="rating4" type="radio" name="rating" value="4" onchange="this.form.submit();">
+					<input id="rating4" type="radio" name="rating" value="4" onchange="updateRating()">
 					<label for="rating4" >4</label>
-					<input id="rating3" type="radio" name="rating" value="3" onchange="this.form.submit();">
+					<input id="rating3" type="radio" name="rating" value="3" onchange="updateRating()">
 					<label for="rating3" >3</label>
-					<input id="rating2" type="radio" name="rating" value="2" onchange="this.form.submit();">
+					<input id="rating2" type="radio" name="rating" value="2" onchange="updateRating()">
 					<label for="rating2"> 2</label>
-					<input id="rating1" type="radio" name="rating" value="1" onchange="this.form.submit();">
+					<input id="rating1" type="radio" name="rating" value="1" onchange="updateRating()">
 					<label for="rating1" >1</label>
 					
 				</span>
@@ -94,9 +98,7 @@
 						
 						@foreach($reviews as $review)
 						<div class="additional_info_sub_grids">
-							<div class="col-xs-2 additional_info_sub_grid_left">
-								<img src="images/t2.png" alt="no pict" class="img-responsive" />
-							</div>
+						
 							<div class="col-xs-10 additional_info_sub_grid_right">
 								<div class="additional_info_sub_grid_rightl">
 									<h4>{{$review->user_fname}}</h4>
@@ -132,14 +134,16 @@
 						{{ $reviews->links() }}
 						<div class="review_grids">
 							@if(is_null($userreviews))
-								<h5>Add A Review</h5>
-									{!! Form::open(['action'=>'reviewCont@store','method'=>'POST']) !!}
-									
+								<h5>Add A Review </h5>
+								
+									{!! Form::open(['action'=>['reviewCont@update',$book->book_id],'method'=>'POST', 'onsubmit'=>'event.preventDefault(); updateReview()']) !!}
+									{{Form::hidden('_method','PUT')}}
 									<div class='form-group'>
-											{{Form::label('body','Write your Review')}}
-											{{Form::textarea('body','',['id' => 'article-ckeditor' , 'class'=>'form-control' , 'placeholder'=> 'Your review body'])}}
+											{{Form::label('review','Write your Review')}}
+											{{Form::textarea('review','',['id' => 'article-ckeditor' , 'class'=>'form-control' , 'placeholder'=> 'Your review body','required' => 'required'])}}
+											
 									</div>
-									{{form::submit('Submit')}}
+									{{form::submit('Save')}}
 									{!! Form::close() !!}
 							@else
 								<div class="additional_info_sub_grids">
@@ -173,6 +177,28 @@
 	
 
 	<!-- //single -->  
-	
+	<script>
+		function updateRating() {
+			var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+			if(!loggedIn){
+				$("input:radio").removeAttr("checked");
+				$('#myModal88').modal('show');
+			}
+			else{
+				this.form.submit();
+			}
+		}
 
+		function updateReview() {
+			var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
+			if(!loggedIn){
+				
+				$('#myModal88').modal('show');
+				return false;
+			}
+			else{
+				this.form.submit();
+			}
+		}
+	</script>
 @endsection

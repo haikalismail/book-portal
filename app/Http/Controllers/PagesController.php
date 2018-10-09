@@ -109,7 +109,7 @@ class PagesController extends Controller
         $id = Auth::user()->user_id;
         $user = DB::table('user_preference')
                 ->join('user_reader', 'user_reader.user_id', '=', 'user_preference.user_id')
-                ->join('book_genre', 'book_genre.genre_id', '=', 'user_preference.genre_id')
+                ->join('book_genre', 'book_genre.genre_name', '=', 'user_preference.genre_name')
                 ->where('user_reader.user_id',$id)
                 //->groupBy('book_genre.user_id')
                 ->get();

@@ -72,7 +72,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user_reader = user_reader::create([
+        $uid=self::getunique();
+        $category = $data['user_category'];
+        $user = user_reader::create([
+            'user_id'=>$uid,
             'user_fname' => $data['user_fname'],
             'user_lname' => $data['user_lname'],
             'username' => $data['username'],
@@ -83,16 +86,59 @@ class RegisterController extends Controller
             'user_address' => $data['user_address'],
             'user_city'=>$data['user_city'],
             'user_state'=>$data['user_state']
-        ]);
-        $user_reader->save();
-
-        $user_preference = user_preference::create([
-            'user_id'=>$user_reader->user_id,
-            'genre_id'=>3
-        ]);
+            ]);
         
-                $user_preference ->user_reader()->save($user_reader);
+            for($i=0;$i<count($category);$i++){
+                $user_preference = user_preference::create([
+                'user_id'=>$uid,
+                'genre_name'=>$category[$i]
+                ]);
+            }
 
-        return $user_preference;
+        return $user;
+    }
+
+    
+    function getToken($length)
+    {
+        $token = "";
+        
+        $codeAlphabet= "0123456789";
+        $max = strlen($codeAlphabet); // edited
+
+        for ($i=0; $i < $length; $i++) {
+            $token .= $codeAlphabet[self::crypto_rand_secure(0, $max-1)];
+        }
+
+        
+        return $token;
+    }
+
+    function getunique(){
+        $token= self::getToken(5);// change the value to the length u want
+        $temp = user_reader::find($token);
+        if(is_null($temp)){
+            //change the query to check with id that exist in database
+            return $token;
+        }
+        else {
+            $token= self::getunique();
+            return $token;
+
+        }
+    }
+    function crypto_rand_secure($min, $max)
+    {
+        $range = $max - $min;
+        if ($range < 1) return $min; // not so random...
+        $log = ceil(log($range, 2));
+        $bytes = (int) ($log / 8) + 1; // length in bytes
+        $bits = (int) $log + 1; // length in bits
+        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } while ($rnd > $range);
+        return $min + $rnd;
     }
 }

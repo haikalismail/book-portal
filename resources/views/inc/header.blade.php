@@ -140,6 +140,8 @@
 	<!-- //navigation -->
 
   @else
+  <?php $user = Auth::user();
+        Session::put('userid', $user->user_id);?>
 <!-- header after login-->
 <div class="header" id="home1">
     <div class="container">
@@ -158,6 +160,7 @@
           </form>
           </div></div>
         <p style="font-size:15px; ">Hi,{{Auth::user()->user_fname}}</p>
+        
       </div>
       
       <div class="w3l_logo" style="text-align: center;">

@@ -11,7 +11,7 @@ class user_preference extends Model
     protected $table='user_preference';
 
     protected $fillable = [
-        'genre_id','user_id'
+        'genre_name','user_id'
     ];
 
     public function user_reader()
