@@ -157,7 +157,6 @@ class ratingCont extends Controller
             }
             else{
                 self::store($request,$id);
-                
                 return redirect()->action('ratingCont@show',$id);
             }
         
