@@ -69,7 +69,7 @@
           <form action="{{action('PagesController@search')}}" method="POST" role="search">
             {{ csrf_field() }}
             <input type="text" name="q" placeholder="Search keywords...">
-            <input type="submit" value="Send">
+            <input type="submit" value="search">
           
             <!-- Dispay recorded database--> 
             <div class="container">
@@ -176,7 +176,7 @@
               <form action="{{action('PagesController@search')}}" method="POST" role="search">
                 {{ csrf_field() }}
                 <input type="text" name="q" placeholder="Search keywords...">
-                <input type="submit" value="Send">
+                <input type="submit" value="Search">
               
                 <!-- Dispay recorded database--> 
                 <div class="container">

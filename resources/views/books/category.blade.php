@@ -29,8 +29,10 @@
 										<a class="button button2" href="book/{{$book->book_id}}" role="button">View More</a>
 									</div> 
 								</div>
+								
 							</div>
 						@endforeach
+						{{$books->links()}}
 						@else
 						<p>no books found</p>
 						@endif

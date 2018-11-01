@@ -19,27 +19,12 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = book_items::all();
+        $books = book_items::orderby('book_title','asc')->paginate(15);
         return view ('books.category') -> with ('books', $books);
        
     }
 
 
-    public function testjoin(){
-
-
-    $books = DB::table('book_items')
-        ->leftjoin('book_contributor', 'book_contributor.book_id', '=', 'book_items.book_id')
-        ->leftjoin('book_author', 'book_author.author_id', '=', 'book_contributor.author_id')
-        ->leftjoin('book_publisher', 'book_publisher.publisher_id', '=', 'book_items.publisher_id')
-        ->leftjoin('book_category', 'book_category.book_id', '=', 'book_items.book_id')
-        ->select('book_items.*','book_publisher.publisher_name', 'book_author.author_fname', 
-        'book_author.author_lname')
-        ->get();
-
-        return $books;
-
-    }
 
 
 
@@ -84,7 +69,7 @@ class BooksController extends Controller
         ->leftjoin('book_genre', 'book_genre.genre_id', '=', 'book_category.genre_id')
         ->select('book_items.*','book_publisher.publisher_name','book_genre.*')
         ->where('book_genre.genre_id',$id)
-        ->get();
+        ->paginate(15);
         $genre = book_genre::find($id);
 
         return view('books.category') -> with ('books', $books)->with('genre',$genre);
