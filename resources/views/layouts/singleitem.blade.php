@@ -1,4 +1,3 @@
-<!--temp user session -->
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,21 +66,7 @@ $(".scroll").click(function(event){
 
 <body>
 
-<!-- breadcrumbs -->
-<div class="breadcrumb_dress">
-    <div class="container">
-        <ul>
-            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> 
-            <i> / </i></li>
-            <li><a href = "/bookCategory"></span> Business</a>
-            <i> / </i></li>
-            <li>{{$book->book_title}}</a>
-
-
-        </ul>
-    </div>
-</div>
-<!-- //breadcrumbs -->  
+@include('inc.breadSingle')
 
 <!-- mobiles -->
 <div class="mobiles">

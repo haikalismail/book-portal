@@ -12,13 +12,14 @@ use App\book_genre;
 
 class BooksController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $books = book_items::orderby('book_title','asc')->paginate(15);
         return view ('books.category') -> with ('books', $books);
        
