@@ -8,6 +8,7 @@ use App\user_reader;
 use Illuminate\Foundation\Auth\User;
 use Auth;
 use Illuminate\Http\Request;
+use Session;
 
 class LoginController extends Controller
 {
@@ -31,6 +32,8 @@ class LoginController extends Controller
      */
     protected function redirectTo()
         {
+            $user = Auth::user();
+            Session::put('userid', $user->user_id);
             return url()->previous();
         }
 
@@ -51,6 +54,10 @@ class LoginController extends Controller
 
     public function logout(Request $request) {
         Auth::logout();
+        Session::forget('userid');
         return redirect()->back();
       }
+
+      
+    
 }

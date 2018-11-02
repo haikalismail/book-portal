@@ -3,7 +3,6 @@
 @section('content')	
 
 
-
 	<!-- single -->
 
 	<div class="single">
@@ -104,24 +103,11 @@
 									<p>{{$review->review}}</p>
 								</div>
 								<div class="additional_info_sub_grid_rightr">
-									<div class="rating">
-										<div class="rating-left">
-											<img src="images/star-.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star-.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star.png" alt=" " class="img-responsive">
-										</div>
-										<div class="clearfix"> </div>
-									</div>
+								@if(is_null($review->rating))
+									<p>No Rating Given</p>
+								@else
+									<p>User Rated: {{$review->rating}}</p>
+								@endif
 								</div>
 								<div class="clearfix"> </div>
 							</div>
