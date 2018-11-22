@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Input;
 
 class RegisterController extends Controller
 {
@@ -73,7 +74,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $uid=self::getunique();
-        $category = $data['user_category'];
+        $category = Input::get('category');
         $user = user_reader::create([
             'user_id'=>$uid,
             'user_fname' => $data['user_fname'],
@@ -89,17 +90,16 @@ class RegisterController extends Controller
             ]);
             $user->save();
         
-            for($i=0;$i<count($category);$i++){
+            foreach($category as $category_id){
                 $user_preference = user_preference::create([
                 'user_id'=>$uid,
-                'genre_name'=>$category[$i]
+                'genre_name'=>$category_id
                 ]);
             }
 
         return $user;
     }
 
-    
     function getToken($length)
     {
         $token = "";

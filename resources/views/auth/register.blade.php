@@ -169,12 +169,12 @@
 
                             <!--user_category--> 
                             <fieldset>  
-                                <label for="user_category">{{ __('Preference category') }}</label><br><br>
+                                <label for="category">{{ __('Preference category') }}</label><br><br>
                                 @php($book_genre = book_genre::select('*')
                                                     ->get())
 
                                             @foreach($book_genre as $book_genres)
-                                                <input type="checkbox" name="user_category[]" id="user_category" value="{{$book_genres->genre_name}}" onclick="return Validateuser_categorySelection();">{{$book_genres->genre_name}}<br>
+                                                <input type="checkbox" name="category[{{$book_genres->genre_name}}]" id="{{$book_genres->genre_name}}" value="{{$book_genres->genre_name}}" onclick="return Validateuser_categorySelection();">{{$book_genres->genre_name}}<br>
                                             @endforeach
                             </fieldset>
 
@@ -182,7 +182,7 @@
                             <script type="text/javascript">  
                                 function Validateuser_categorySelection()  
                                 {  
-                                        var checkboxes = document.getElementsByName("user_category");  
+                                        var checkboxes = document.getElementsByName("category");  
                                         var numberOfCheckedItems = 0;  
                                         for(var i = 0; i < checkboxes.length; i++)  
                                         {  
