@@ -1,7 +1,7 @@
 
 <?php use App\book_genre; ?>
     <div class="row justify-content-center">
-        <div class="col-md-11">
+        <div style=" margin:15px">
             <div class="col-lg-12 well">
                 <div class="row">
                     <form method="POST" action="{{ route('register') }}">

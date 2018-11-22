@@ -96,7 +96,7 @@ class RegisterController extends Controller
             }
             
             $user->save();
-        //return $user;
+        return $user;
     }
 
     function getToken($length)
