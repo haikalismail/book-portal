@@ -33,8 +33,12 @@ class LoginController extends Controller
     protected function redirectTo()
         {
             $user = Auth::user();
+<<<<<<< HEAD
             Session::put('userid', $user->user_id);
             return '/dashboard';
+=======
+            return url()->previous();
+>>>>>>> 74fd2909ea76b8019adc733d574652dc19ab8a61
         }
 
     /**
@@ -52,10 +56,16 @@ class LoginController extends Controller
     return 'username';
     }
 
+
+
     public function logout(Request $request) {
         Auth::logout();
+<<<<<<< HEAD
         Session::forget('userid');
         $redirectTo = '/dashboard';
+=======
+        return redirect()->back();
+>>>>>>> 74fd2909ea76b8019adc733d574652dc19ab8a61
       }
 
       
