@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>{{config('app.name'),'Book Portal'}}</title>
+        <title>{{config('app.name'),'Book & Reco'}}</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,6 +29,7 @@
 <link href='//fonts.googleapis.com/css?family=Glegoo:400,700' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,30,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- //web fonts -->  
+
 <!-- start-smooth-scrolling -->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {

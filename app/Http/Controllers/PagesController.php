@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use View;
 use DB;
+use Auth;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use App\book_author;
@@ -113,7 +113,7 @@ class PagesController extends Controller
                 ->where('user_reader.user_id',$id)
                 //->groupBy('book_genre.user_id')
                 ->get();
-                //return $user;
+                //return $id;
         
         return view ('pages.dashboard') -> with ('user', $user);
 

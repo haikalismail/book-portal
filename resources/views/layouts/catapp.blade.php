@@ -6,9 +6,6 @@
 
     <link rel="stylesheet" href={{asset('css/app.css')}}>
 
-<link href={{asset('css/bootstrap.css')}} rel="stylesheet" type="text/css" media="all" />
-<link href={{asset('css/style.css')}} rel="stylesheet" type="text/css" media="all" /> 
-<link href={{asset('css/fasthover.css')}} rel="stylesheet" type="text/css" media="all" />
 <link href={{asset('css/mycustomstyle.css')}} rel="stylesheet" type="text/css" media="all" />
 
 <link href={{asset('css/font-awesome.css')}} rel="stylesheet"> 
@@ -30,7 +27,7 @@ $(".scroll").click(function(event){
 
 </script>
 
-<title>{{config('app.name', 'LARAPP')}}</title>
+<title>{{config('app.name', 'Book & Reco')}}</title>
 
 <!-- flexslider -->
         <script defer src={{asset('js/jquery.flexslider.js')}}></script>
@@ -61,27 +58,27 @@ $(".scroll").click(function(event){
     });
 </script>
 @include('inc.messages')
-    @include('inc.header')
+@include('inc.header')
 
-    <body>
+<body>
 
-	@include('inc.breadCategory')
-	<!-- mobiles -->
-	<div class="mobiles">
-		
-		<div class="container">
-			<div class="w3ls_mobiles_grids">
-                @include('inc.list')
-                
-                @yield('content')
-           
-                <div class="clearfix"> 
+@include('inc.breadCategory')
+<!-- mobiles -->
+<div class="mobiles">
+    
+    <div class="container">
+        <div class="w3ls_mobiles_grids">
+            @include('inc.list')
+            
+            @yield('content')
+       
+            <div class="clearfix"> 
 
-                </div>
             </div>
         </div>
-    </div>  
+    </div>
+</div>  
 
 
-        	
-    </body>
+        
+</body>

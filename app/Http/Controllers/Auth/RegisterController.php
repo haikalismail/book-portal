@@ -87,6 +87,7 @@ class RegisterController extends Controller
             'user_city'=>$data['user_city'],
             'user_state'=>$data['user_state']
             ]);
+            $user->save();
         
             for($i=0;$i<count($category);$i++){
                 $user_preference = user_preference::create([

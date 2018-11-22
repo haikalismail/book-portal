@@ -29,10 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected function redirectTo()
-        {
-            return url()->previous();
-        }
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -49,8 +46,4 @@ class LoginController extends Controller
     return 'username';
     }
 
-    public function logout(Request $request) {
-        Auth::logout();
-        return redirect()->back();
-      }
 }

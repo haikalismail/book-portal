@@ -102,7 +102,7 @@
 										<img src="{{$book->image_url}}" alt="No ImageS" href="/book/{{$book->book_id}}"/>
 									</div>
 									<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</a></h5>
-								@endforeach
+								
 								
 								<div class="simpleCart_shelfItem">
 										@php($authors = book_author::select('*')
@@ -115,7 +115,8 @@
 												{{$author->author_fname}} {{$author->author_lname}}
 											@endforeach
 										</i></p> 
-								</div>	
+								</div>
+								@endforeach	
 						</div>
 				</div>
 			</div>
