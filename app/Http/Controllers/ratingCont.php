@@ -90,16 +90,23 @@ class ratingCont extends Controller
     ->where(['book_id'=>$id])
     ->first();
 
-    $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
-    ->where('book_review.user_id','!=',Session::get('userid'))
-    ->where('book_id',$id)
-    ->orderBy('review_date','desc')
-    ->paginate(10);
+        $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
+        ->leftjoin('book_rating',function($join)
+        {
+            $join->on('book_review.user_id', '=','book_rating.user_id');
+            $join->on('book_review.book_id','=','book_rating.book_id');
+ 
+        })
+        ->where('book_review.user_id','!=',Session::get('userid'))
+        ->where('book_review.book_id',$id)
+        ->orderBy('review_date','desc')
+        ->paginate(10);
     $userreviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
     ->where('book_review.user_id',Session::get('userid'))
     ->where('book_review.book_id',$id)
     ->first();
     
+
     return view('books.singlebook') 
     ->with('book', $booksingle)
     ->with('authors',$contributor)
@@ -107,8 +114,7 @@ class ratingCont extends Controller
     ->with('avgratings',$avgrating)
     ->with('reviews',$reviews)
     ->with('userreviews',$userreviews)
-    ->with('genre', $genre)
-    ;
+    ->with('genre', $genre);
         
     }
 
@@ -157,7 +163,6 @@ class ratingCont extends Controller
             }
             else{
                 self::store($request,$id);
-                
                 return redirect()->action('ratingCont@show',$id);
             }
         

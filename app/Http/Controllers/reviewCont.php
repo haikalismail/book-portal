@@ -105,6 +105,7 @@ class reviewCont extends Controller
         ->first();
     
         $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
+        ->leftjoin('book_rating', 'book_review.user_id','=','book_rating.user_id')
         ->where('book_review.user_id','!=',Session::get('userid'))
         ->where('book_id',$id)
         ->orderBy('review_date','desc')
@@ -113,6 +114,7 @@ class reviewCont extends Controller
         ->where('book_review.user_id',Session::get('userid'))
         ->where('book_review.book_id',$id)
         ->first();
+        
         
         return view('books.singlebook') 
         ->with('book', $booksingle)

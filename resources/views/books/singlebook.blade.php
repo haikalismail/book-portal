@@ -3,7 +3,6 @@
 @section('content')	
 
 
-
 	<!-- single -->
 
 	<div class="single">
@@ -22,7 +21,7 @@
 
 				<!--INSERT RATING HERE-->
 				<!--update the id whenver rating_id is obtainable-->
-				{!! Form::open(['id'=>'review-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
+				{!! Form::open(['id'=>'rating-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
 				<h4>Avg Rating {{round($avgratings->average,2)}} </h4>
 				<div class="rating1">
 						{{Form::label('title','Your Rating')}}
@@ -60,7 +59,7 @@
 
 						@if(count($authors) > 0)
 						@foreach($authors as $author)
-							{{$author->author_fname}} {{$author->author_lname}} 
+							{{$author->author_name}} 
 						@endforeach
 						@endif
 						
@@ -70,10 +69,8 @@
 						@endif
 					</h6>
 							<p>ISBN :		{{$book->book_isbn}}</p>
-							<p>Pages:		{{$book->book_page}}</p>
 							<p>Year :		{{$book->book_year}}</p>
 							<p>Location :	{{$book->book_location}}</p>
-							<p>Material :	{{$book->book_material}}</p>
 							<p>Status	:	{{$book->book_status}}</p>
 							<p>Unit		:	{{$book->book_unit}}</p>
 							<p>Publisher:	{{$book->publisher_name}}</p>
@@ -106,24 +103,11 @@
 									<p>{{$review->review}}</p>
 								</div>
 								<div class="additional_info_sub_grid_rightr">
-									<div class="rating">
-										<div class="rating-left">
-											<img src="images/star-.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star-.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star.png" alt=" " class="img-responsive">
-										</div>
-										<div class="rating-left">
-											<img src="images/star.png" alt=" " class="img-responsive">
-										</div>
-										<div class="clearfix"> </div>
-									</div>
+								@if(is_null($review->rating))
+									<p>No Rating Given</p>
+								@else
+									<p>User Rated: {{$review->rating}}</p>
+								@endif
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -136,7 +120,7 @@
 							@if(is_null($userreviews))
 								<h5>Add A Review </h5>
 								
-									{!! Form::open(['action'=>['reviewCont@update',$book->book_id],'method'=>'POST', 'onsubmit'=>'event.preventDefault(); updateReview()']) !!}
+									{!! Form::open(['id'=>'review-form','action'=>['reviewCont@update',$book->book_id],'method'=>'POST', 'onsubmit'=>'event.preventDefault(); updateReview()']) !!}
 									{{Form::hidden('_method','PUT')}}
 									<div class='form-group'>
 											{{Form::label('review','Write your Review')}}
@@ -185,7 +169,7 @@
 				$('#myModal88').modal('show');
 			}
 			else{
-				this.form.submit();
+				document.getElementById("rating-form").submit();
 			}
 		}
 
@@ -197,7 +181,7 @@
 				return false;
 			}
 			else{
-				this.form.submit();
+				document.getElementById("review-form").submit();
 			}
 		}
 	</script>

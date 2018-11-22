@@ -1,6 +1,11 @@
 
 <!-- header modal -->
+<<<<<<< HEAD
 @guest
+=======
+@if(Auth::guest())
+
+>>>>>>> dea682b2a99869f56424d43c273842e45105acf4
 <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -70,7 +75,7 @@
           <form action="{{action('PagesController@search')}}" method="POST" role="search">
             {{ csrf_field() }}
             <input type="text" name="q" placeholder="Search keywords...">
-            <input type="submit" value="Send">
+            <input type="submit" value="send">
           
             <!-- Dispay recorded database--> 
             <div class="container">
@@ -141,8 +146,12 @@
 	<!-- //navigation -->
 
   @else
+<<<<<<< HEAD
   <?php $user = Auth::user();
         Session::put('userid', $user->user_id);?>
+=======
+
+>>>>>>> dea682b2a99869f56424d43c273842e45105acf4
 <!-- header after login-->
 <div class="header" id="home1">
     <div class="container">
@@ -176,7 +185,7 @@
               <form action="{{action('PagesController@search')}}" method="POST" role="search">
                 {{ csrf_field() }}
                 <input type="text" name="q" placeholder="Search keywords...">
-                <input type="submit" value="Send">
+                <input type="submit" value="send">
               
                 <!-- Dispay recorded database--> 
                 <div class="container">

@@ -16,22 +16,24 @@
 									</div>
 									<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 									<div class="col-md-12">
-										<div class="rating1">
+										
 											@php($authors = book_author::select('*')
 												->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
 												->where('book_id',$book->book_id)
 												->get())
 											<p>
 											@foreach($authors as $author)
-											{{$author->author_fname}} {{$author->author_lname}}
+											{{$author->author_name}}
 											@endforeach
 											</p>
-										</div>
+										
 										<a class="button button2" href="book/{{$book->book_id}}" role="button">View More</a>
 									</div> 
 								</div>
+								
 							</div>
 						@endforeach
+						{{$books->links()}}
 						@else
 						<p>no books found</p>
 						@endif
