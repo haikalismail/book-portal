@@ -1,11 +1,7 @@
 
 <!-- header modal -->
-<<<<<<< HEAD
-@guest
-=======
 @if(Auth::guest())
 
->>>>>>> dea682b2a99869f56424d43c273842e45105acf4
 <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -64,13 +60,8 @@
         <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         <p>Login</p>
       </div>
-<<<<<<< HEAD
-      <div class="w3l_logo" style="text-align: center;margin-left:13em;">
-        <h1><a href="index.html">{{config('app.name', 'Book & Reco')}}<span>Your Library. Your Way.</span></a></h1>
-=======
       <div class="w3l_logo" style="text-align: center;">
         <h1><a href="/">Book Portal<span>Your Library. Your Way.</span></a></h1>
->>>>>>> d33fc27ae5c7244e73205afebee71f7ddc047104
       </div>
       <div class="search" style="margin-left:13em;">
         <input class="search_box" type="checkbox" id="search_box">
@@ -151,12 +142,6 @@
 	<!-- //navigation -->
 
   @else
-<<<<<<< HEAD
-  <?php $user = Auth::user();
-        Session::put('userid', $user->user_id);?>
-=======
-
->>>>>>> dea682b2a99869f56424d43c273842e45105acf4
 <!-- header after login-->
 <div class="header" id="home1">
     <div class="container">
@@ -179,11 +164,7 @@
       </div>
       
       <div class="w3l_logo" style="text-align: center;">
-<<<<<<< HEAD
-          <h1><a href="index.html">{{config('app.name', 'Book & Reco')}}<span>Your Library. Your Way.</span></a></h1>
-=======
           <h1><a href="/">Book Portal<span>Your Library. Your Way.</span></a></h1>
->>>>>>> d33fc27ae5c7244e73205afebee71f7ddc047104
         </div>
 
         <div class="search">

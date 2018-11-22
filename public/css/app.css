@@ -11419,6 +11419,9 @@ li.w3pages .dropdown-menu > li > a:hover {
 }
 
 .agile_ecommerce_tab_left h5 a {
+  height:50px; /* or whatever width you want. */
+  max-height:50px; /* or whatever width you want. */
+  display: inline-block;
   font-size: 1.2em;
   color: #ff5063;
   text-decoration: none;

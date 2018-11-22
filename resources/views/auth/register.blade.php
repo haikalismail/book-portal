@@ -6,13 +6,10 @@
                 <div class="row">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-<<<<<<< HEAD
-=======
 
                        
 
                         <!--first name-->
->>>>>>> d33fc27ae5c7244e73205afebee71f7ddc047104
                         <div class="form-group row">
                             
                             <!--First Name & Last Name-->
