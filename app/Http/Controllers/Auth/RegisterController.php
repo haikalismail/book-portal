@@ -91,9 +91,11 @@ class RegisterController extends Controller
             $user->save();
         
             foreach($category as $category_id){
+                
                 $user_preference = user_preference::create([
                 'user_id'=>$uid,
-                'genre_name'=>$category_id
+                'genre_id'=>$category_id,
+                
                 ]);
             }
 
