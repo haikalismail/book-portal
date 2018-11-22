@@ -14,4 +14,9 @@ class book_genre extends Model
     {
         return $this->belongsTo('App\Models\book_items');
     }
+
+    public function user_preference()
+    {
+        return $this->belongsTo('user_preference', 'genre_id');
+    }
 }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use View;
 use DB;
+use Auth;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use App\book_author;
@@ -109,11 +109,11 @@ class PagesController extends Controller
         $id = Auth::user()->user_id;
         $user = DB::table('user_preference')
                 ->join('user_reader', 'user_reader.user_id', '=', 'user_preference.user_id')
-                ->join('book_genre', 'book_genre.genre_id', '=', 'user_preference.genre_id')
+                ->join('book_genre', 'book_genre.genre_name', '=', 'user_preference.genre_name')
                 ->where('user_reader.user_id',$id)
                 //->groupBy('book_genre.user_id')
                 ->get();
-                //return $user;
+                //return $id;
         
         return view ('pages.dashboard') -> with ('user', $user);
 

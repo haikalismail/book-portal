@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\user_reader;
+use App\user_preference;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +50,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'user_id' => 'required|string|max:255',
             'user_fname' => 'required|string|max:255',
             'user_lname' => 'required|string|max:255',
             'user_dob' => 'required|string|max:255',
@@ -73,7 +73,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $uid=self::getunique();
-        return user_reader::create([
+        $category = $data['user_category'];
+        $user = user_reader::create([
             'user_id'=>$uid,
             'user_fname' => $data['user_fname'],
             'user_lname' => $data['user_lname'],
@@ -85,9 +86,17 @@ class RegisterController extends Controller
             'user_address' => $data['user_address'],
             'user_city'=>$data['user_city'],
             'user_state'=>$data['user_state']
-        ]);
-
+            ]);
+            $user->save();
         
+            for($i=0;$i<count($category);$i++){
+                $user_preference = user_preference::create([
+                'user_id'=>$uid,
+                'genre_name'=>$category[$i]
+                ]);
+            }
+
+        return $user;
     }
 
     
