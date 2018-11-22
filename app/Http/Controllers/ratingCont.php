@@ -9,7 +9,7 @@ use App\book_genre;
 use App\book_review;
 use DB;
 use Session;
-
+use Auth;
 class ratingCont extends Controller
 {
     /**
@@ -48,7 +48,7 @@ class ratingCont extends Controller
         $rating = new book_rating;
         
         $rating->rating = $request->input('rating');
-        $rating->user_id = Session::get('userid');
+        $rating->user_id = Auth::id();
         $rating->book_id = $id;
         $rating->timestamps = false;
         $rating->save();
@@ -82,7 +82,7 @@ class ratingCont extends Controller
 
     $rating = book_rating::leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
     ->where(['book_id'=>$id])
-    ->where('book_rating.user_id',Session::get('userid'))
+    ->where('book_rating.user_id',Auth::id())
     ->first();
 
     $avgrating = book_rating::select(DB::raw('avg(rating) AS average'))
@@ -97,16 +97,17 @@ class ratingCont extends Controller
             $join->on('book_review.book_id','=','book_rating.book_id');
  
         })
-        ->where('book_review.user_id','!=',Session::get('userid'))
+        ->where('book_review.user_id','!=',Auth::id())
         ->where('book_review.book_id',$id)
         ->orderBy('review_date','desc')
         ->paginate(10);
     $userreviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
-    ->where('book_review.user_id',Session::get('userid'))
+    ->where('book_review.user_id',Auth::id())
     ->where('book_review.book_id',$id)
     ->first();
     
-
+        
+    
     return view('books.singlebook') 
     ->with('book', $booksingle)
     ->with('authors',$contributor)
@@ -145,16 +146,16 @@ class ratingCont extends Controller
             
         
             if (book_rating::where('book_id', '=', $id)
-            ->where('user_id',Session::get('userid'))
+            ->where('user_id',Auth::id())
             ->exists()) {
                 // user found
             //create rating
             
             $ratings = book_rating::where('book_id', '=', $id)
-            ->where('user_id',Session::get('userid'))
+            ->where('user_id',Auth::id())
             ->first();
             $ratings->rating = $request->input('rating');
-            $ratings->user_id = Session::get('userid');
+            $ratings->user_id = Auth::id();
             $ratings->book_id = "$id";
             $ratings->timestamps = false;
             $ratings->save();

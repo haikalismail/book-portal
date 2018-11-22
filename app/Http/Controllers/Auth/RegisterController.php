@@ -94,8 +94,7 @@ class RegisterController extends Controller
                 
                 $user_preference = user_preference::create([
                 'user_id'=>$uid,
-                'genre_id'=>$category_id,
-                
+                'genre_id'=>$category_id
                 ]);
             }
 
