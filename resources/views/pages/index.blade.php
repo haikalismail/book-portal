@@ -2,7 +2,8 @@
 @section('content')
 @include('inc.header')
 
-<?php use App\book_author;?>
+<?php use App\book_author;
+	use App\book_genre;?>
 	
 	<!-- banner -->
 	<div class="banner">
@@ -11,183 +12,60 @@
 			</div>
 	</div>
 	<!-- //banner --> 
-
-	<!--Drama-->
-	<div class="top-brands">
-		@php ($count=0)
-		@php ($count1=0)
-		@foreach($books as $f_loop)
-			@if($count<1)
-				<div class="container">
-					<h3>Drama</h3>	
-						<div class="agileinfo_new_products_grids">
-							
-							@foreach($books as $book)
-									@if($book->genre_name==='Drama'||$book->genre_name==='drama')
-										<div class="col-md-3 agileinfo_new_products_grid">
-											<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-												
-														<div class="hs-wrapper hs-wrapper1">
-															<img src="{{$book->image_url}}" alt="no images" class="img-responsive" />
-															<div class="w3_hs_bottom w3_hs_bottom_sub">
-																<ul>
-																	<li>
-																		<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-														<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</a></h5>
-																						
-														<div class="simpleCart_shelfItem">			
-															<p>by <i class="item_price">
-															@php($authors = book_author::select('*')
-															->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
-															->where('book_id',$book->book_id)
-															->get())
-								
-															<p>
-																@foreach($authors as $author)
-																	{{$author->author_fname}} {{$author->author_lname}}
-																@endforeach
-															</i></p>
-														</div>
-											</div>
-										</div>
-									@endif
-							@endforeach
-							
-							<div class="clearfix"> </div>
-						</div>	
-				</div>
-				@php($count++)
-			@endif
 	
-			@if($count1<1)
-				<a class="w3ls-cart" href="bookCategory/2" role="button"  style="float: right; padding-right:200px;">View More</a>
-				@php($count1++)
-			@endif
-		@endforeach
-	</div>
-	<!--//drama--> 
-	
-	<!-- Thriller -->
+	<!-- category -->
+	@php($genre = book_genre::select('*')->get())
+	@foreach($genre as $genre)
 	<div class="new-products">
+
 		@php ($count=0)
 		@php ($count1=0)
-		@foreach($books as $f_loop)
-			@if($count<1)
-				<div class="container">
-					<h3>Thriller</h3>	
-						<div class="agileinfo_new_products_grids">
-							
-							@foreach($books as $book)
-									@if($book->genre_name==='Thriller'||$book->genre_name==='thriller')
-										<div class="col-md-3 agileinfo_new_products_grid">
-											<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-												
-														<div class="hs-wrapper hs-wrapper1">
-															<img src="{{$book->image_url}}" alt="no images" class="img-responsive" />
-															<div class="w3_hs_bottom w3_hs_bottom_sub">
-																<ul>
-																	<li>
-																		<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-														<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</a></h5>
-																						
-														<div class="simpleCart_shelfItem">			
-															<p>by <i class="item_price">
-															@php($authors = book_author::select('*')
-															->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
-															->where('book_id',$book->book_id)
-															->get())
-								
-															<p>
-																@foreach($authors as $author)
-																	{{$author->author_fname}} {{$author->author_lname}}
-																@endforeach
-															</i></p>
-														</div>
+		@php ($count2=0)
+				<div class="container" style="padding-bottom: 20px;">
+					<h3>{{$genre->genre_name}}</h3>	
+					<div class="col-md-12 w3ls_mobiles_grid_right">
+							<!--TIGA YANG FIRST-->
+							<div class="w3ls_mobiles_grid_right_grid3">
+								@if(count($books) > 0)
+								@foreach($books as $book)
+									@if($count2<3)
+									<div class="col-md-4 agile info_new_products_grid agile info_new_products_grid_mobiles">
+										<div class="agile_ecommerce_tab_left mobiles_grid">
+											<div class="hs-wrapper hs-wrapper2">
+												<img src="image/{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 											</div>
+											<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
+												@php($authors = book_author::select('*')
+														->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
+														->where('book_id',$book->book_id)
+														->get())
+													<p>
+													@foreach($authors as $author)
+													{{$author->author_name}}
+													@endforeach
+													</p>
+											<div class="col-md-12">
+												<a class="button button2" href="book/{{$book->book_id}}" role="button">View More</a>
+											</div> 
 										</div>
+										
+									</div>
+									@php($count2++)
 									@endif
-							@endforeach
-							
-							<div class="clearfix"> </div>
-						</div>	
+								@endforeach
+								@endif
+								<div class="clearfix"> </div>
+							</div>
+						</div>
 				</div>
 				@php($count++)
-			@endif
 	
 			@if($count1<1)
-				<a class="w3ls-cart" href="bookCategory/1" role="button"  style="float: right; padding-right:200px;">View More</a>
+			<a class="w3ls-cart" href="bookCategory/{{$genre->genre_id}}" role="button"  style="float: right; padding-right:200px;">View More</a>
 				@php($count1++)
 			@endif
 		@endforeach
 	</div>
-	<!-- //Thriller -->
-
-	<!-- Action -->
-	<div class="top-brands">
-		@php ($count=0)
-		@php ($count1=0)
-		@foreach($books as $f_loop)
-			@if($count<1)
-					<div class="container">
-						<h3>Action</h3>	
-							<div class="agileinfo_new_products_grids">
-								
-								@foreach($books as $book)
-										@if($book->genre_name==='Action'||$book->genre_name==='action')
-											<div class="col-md-3 agileinfo_new_products_grid">
-												<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-													
-															<div class="hs-wrapper hs-wrapper1">
-																<img src="{{$book->image_url}}" alt="no images" class="img-responsive" />
-																<div class="w3_hs_bottom w3_hs_bottom_sub">
-																	<ul>
-																		<li>
-																			<a href="#" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-															<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</a></h5>
-																							
-															<div class="simpleCart_shelfItem">			
-																<p>by <i class="item_price">
-																@php($authors = book_author::select('*')
-																->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
-																->where('book_id',$book->book_id)
-																->get())
-									
-																<p>
-																	@foreach($authors as $author)
-																		{{$author->author_fname}} {{$author->author_lname}}
-																	@endforeach
-																</i></p>
-															</div>
-												</div>
-											</div>
-										@endif
-								@endforeach
-								
-								<div class="clearfix"> </div>
-							</div>	
-					</div>
-				@php($count++)
-			@endif
-		
-			@if($count1<1)
-				<a class="w3ls-cart" href="bookCategory/3" role="button"  style="float: right; padding-right:200px;">View More</a>
-				@php($count1++)
-			@endif
-		@endforeach		
-	</div> 
-	<!-- //Action -->
-	
+	<!-- //category -->
 @include('inc.footer')
 @endsection
