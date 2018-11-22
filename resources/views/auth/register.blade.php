@@ -7,20 +7,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <!--user id-->
-                        <div class="form-group row">
-                            <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('User Id') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="user_id" type="text" class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" name="user_id" value="{{ old('user_id') }}" required autofocus>
-
-                                @if ($errors->has('user_id'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('user_id') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                       
 
                         <!--first name-->
                         <div class="form-group row">
