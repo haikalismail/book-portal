@@ -9,9 +9,10 @@ use App\book_genre;
 class user_preference extends Model
 {
     protected $table='user_preference';
+    public $timestamps=false;
 
     protected $fillable = [
-        'genre_id','user_id'
+        'genre_name','user_id','genre_id'
     ];
 
     public function user_reader()

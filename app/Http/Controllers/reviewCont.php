@@ -107,7 +107,7 @@ class reviewCont extends Controller
         $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
         ->leftjoin('book_rating', 'book_review.user_id','=','book_rating.user_id')
         ->where('book_review.user_id','!=',Session::get('userid'))
-        ->where('book_id',$id)
+        ->where('book_review.book_id',$id)
         ->orderBy('review_date','desc')
         ->paginate(10);
         $userreviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
