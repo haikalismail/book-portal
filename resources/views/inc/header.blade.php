@@ -64,8 +64,13 @@
         <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         <p>Login</p>
       </div>
+<<<<<<< HEAD
       <div class="w3l_logo" style="text-align: center;margin-left:13em;">
         <h1><a href="index.html">{{config('app.name', 'Book & Reco')}}<span>Your Library. Your Way.</span></a></h1>
+=======
+      <div class="w3l_logo" style="text-align: center;">
+        <h1><a href="/">Book Portal<span>Your Library. Your Way.</span></a></h1>
+>>>>>>> d33fc27ae5c7244e73205afebee71f7ddc047104
       </div>
       <div class="search" style="margin-left:13em;">
         <input class="search_box" type="checkbox" id="search_box">
@@ -174,7 +179,11 @@
       </div>
       
       <div class="w3l_logo" style="text-align: center;">
+<<<<<<< HEAD
           <h1><a href="index.html">{{config('app.name', 'Book & Reco')}}<span>Your Library. Your Way.</span></a></h1>
+=======
+          <h1><a href="/">Book Portal<span>Your Library. Your Way.</span></a></h1>
+>>>>>>> d33fc27ae5c7244e73205afebee71f7ddc047104
         </div>
 
         <div class="search">
