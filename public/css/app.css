@@ -11599,21 +11599,20 @@ li.w3pages .dropdown-menu > li > a:hover {
 
 .starRating:not(old) > label {
   float: right;
-  background: image-url("star.png");
+  background: url(../images/star.png);
   background-size: contain;
   margin-right: 2px;
 }
 
-.starRating:not(old) > label:before {
-  content: '';
-  display: block;
-  width: 18px;
-  height: 18px;
-  background: image-url("star-.png");
-  background-size: contain;
-  opacity: 0;
-  -webkit-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
+.starRating:not(old) > label:before{
+content         : '';
+display         : block;
+width           : 18px;
+height          : 18px;
+background      : url(../images/star-.png);
+background-size : contain;
+opacity         : 0;
+transition      : opacity 0.2s linear;
 }
 
 .starRating:not(old) > label:hover:before,

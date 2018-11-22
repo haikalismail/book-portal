@@ -9,7 +9,7 @@ use App\book_genre;
 use App\book_review;
 use DB;
 use Session;
-
+use Auth;
 class reviewCont extends Controller
 {
     /**
@@ -23,13 +23,12 @@ class reviewCont extends Controller
     {   
 
         $review = book_review::where('review_id','!=','3')
-        ->where('user_id',Session::get('userid'))
+        ->where('user_id',Auth::id())
         ->orderBy('review_date','desc')->get();
         $userreview = book_review::where('review_id','3')
-        ->where('user_id',Session::get('userid'))
+        ->where('user_id',Auth::id())
         ->get();
 
-        
         return view('books.singlebook')
         ->with('userreview',$userreview)
         ->with('review',$review);
@@ -62,7 +61,7 @@ class reviewCont extends Controller
         $review = new book_review;
         
         $review->review = $request->input('review');
-        $review->user_id = Session::get('userid');
+        $review->user_id = Auth::id();
         $review->book_id = $id;
         $review->timestamps = false;
         $review->save();
@@ -96,7 +95,7 @@ class reviewCont extends Controller
     
         $rating = book_rating::leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
         ->where(['book_id'=>$id])
-        ->where('book_rating.user_id',Session::get('userid'))
+        ->where('book_rating.user_id',Auth::id())
         ->first();
     
         $avgrating = book_rating::select(DB::raw('avg(rating) AS average'))
@@ -106,12 +105,12 @@ class reviewCont extends Controller
     
         $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
         ->leftjoin('book_rating', 'book_review.user_id','=','book_rating.user_id')
-        ->where('book_review.user_id','!=',Session::get('userid'))
+        ->where('book_review.user_id','!=',Auth::id())
         ->where('book_review.book_id',$id)
         ->orderBy('review_date','desc')
         ->paginate(10);
         $userreviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
-        ->where('book_review.user_id',Session::get('userid'))
+        ->where('book_review.user_id',Auth::id())
         ->where('book_review.book_id',$id)
         ->first();
         
@@ -153,14 +152,14 @@ class reviewCont extends Controller
         ]);
         
         if (book_review::where('book_id', '=', $id)
-        ->where('user_id',Session::get('userid'))
+        ->where('user_id',Auth::id())
         ->exists()) {
 
         //create review
         $review = new book_review;
         
         $review->review = $request->input('review');
-        $review->user_id = Session::get('userid');
+        $review->user_id = Auth::id();
         $review->book_id = $id;
         $review->timestamps = false;
         $review->save();
