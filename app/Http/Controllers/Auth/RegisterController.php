@@ -86,18 +86,17 @@ class RegisterController extends Controller
             'user_phone' => $data['user_phone'],
             'user_address' => $data['user_address'],
             'user_city'=>$data['user_city'],
-            'user_state'=>$data['user_state']
-            ]);
-            $user->save();
-        
+            'user_state'=>$data['user_state']]);
+            
             foreach($category as $category_id){
                 $user_preference = user_preference::create([
                 'user_id'=>$uid,
                 'genre_id'=>$category_id
                 ]);
             }
-
-        return $user;
+            
+            $user->save();
+        //return $user;
     }
 
     function getToken($length)
