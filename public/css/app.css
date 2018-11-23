@@ -11302,7 +11302,7 @@ li.w3pages .dropdown-menu > li > a:hover {
 /*-- //banner --*/
 /*-- banner-bottom --*/
 .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-  padding: 5em 0;
+  padding: 0 0;
 }
 
 .modal-body iframe {
@@ -11419,10 +11419,7 @@ li.w3pages .dropdown-menu > li > a:hover {
 }
 
 .agile_ecommerce_tab_left h5 a {
-  height:50px; /* or whatever width you want. */
-  max-height:50px; /* or whatever width you want. */
-  display: inline-block;
-  font-size: 1.0em;
+  font-size: 1.2em;
   color: #ff5063;
   text-decoration: none;
   font-weight: 700;
@@ -11599,20 +11596,21 @@ li.w3pages .dropdown-menu > li > a:hover {
 
 .starRating:not(old) > label {
   float: right;
-  background: url(../images/star.png);
+  background: image-url("star.png");
   background-size: contain;
   margin-right: 2px;
 }
 
-.starRating:not(old) > label:before{
-content         : '';
-display         : block;
-width           : 18px;
-height          : 18px;
-background      : url(../images/star-.png);
-background-size : contain;
-opacity         : 0;
-transition      : opacity 0.2s linear;
+.starRating:not(old) > label:before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: image-url("star-.png");
+  background-size: contain;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
 }
 
 .starRating:not(old) > label:hover:before,
@@ -12516,7 +12514,7 @@ h3.other-nw {
 }
 
 .new-products {
-  background: #f3f3f3;
+  background: #ffffff;
 }
 
 .w3ls_mobiles_grid_left_grid h3 {
@@ -14201,7 +14199,7 @@ td.invert-image a img {
     width: 30%;
   }
   .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-    padding: 4em 0;
+    padding: 0 0;
   }
   .footer-copy-pos {
     right: 5%;
@@ -14440,7 +14438,7 @@ td.invert-image a img {
     padding: 8.5em 0 0;
   }
   .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-    padding: 3em 0;
+    padding: 0 0;
   }
   .special-deals h2, .new-products h3, .top-brands h3, .w3l_related_products h3, .team h3, .mail h3, h3.agileits-title {
     font-size: 1.8em;
@@ -15039,7 +15037,7 @@ td.invert-image a img {
     width: 72%;
   }
   .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-    padding: 2em 0;
+    padding: 0 0;
   }
   .w3_hs_bottom_sub ul {
     padding: 9em 0 0 !important;

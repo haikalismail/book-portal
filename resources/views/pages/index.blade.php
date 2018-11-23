@@ -22,12 +22,13 @@
 		@php ($count1=0)
 		@php ($count2=0)
 				<div class="container" style="padding-bottom: 20px;">
-					<h3>{{$genre->genre_name}}</h3>	
+					<br><br><h3>{{$genre->genre_name}}</h3>	
 					<div class="col-md-12 w3ls_mobiles_grid_right">
 							<!--TIGA YANG FIRST-->
 							<div class="w3ls_mobiles_grid_right_grid3">
 								@if(count($books) > 0)
 								@foreach($books as $book)
+									@if($genre->genre_name === $book->genre_name)
 									@if($count2<3)
 									<div class="col-md-4 agile info_new_products_grid agile info_new_products_grid_mobiles">
 										<div class="agile_ecommerce_tab_left mobiles_grid">
@@ -51,6 +52,7 @@
 										
 									</div>
 									@php($count2++)
+									@endif
 									@endif
 								@endforeach
 								@endif
