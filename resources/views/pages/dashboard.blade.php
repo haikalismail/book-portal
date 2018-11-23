@@ -56,7 +56,7 @@
 																			<div class="col-md-4 agile info_new_products_grid agile info_new_products_grid_mobiles">
 																				<div class="agile_ecommerce_tab_left mobiles_grid">
 																					<div class="hs-wrapper hs-wrapper2">
-																						<img src="image/{{$books->image_url}}" alt="No Image" class="img-responsive"/>	
+																						<img src="{{$books->image_url}}" alt="No Image" class="img-responsive"/>	
 																					</div>
 																					<h5><a href="/book/{{$books->book_id}}">{{$books->book_title}}</h5>
 																						@php($authors = book_author::select('*')
@@ -123,7 +123,7 @@
 									<div class="col-md-4 agile info_new_products_grid agile info_new_products_grid_mobiles">
 										<div class="agile_ecommerce_tab_left mobiles_grid">
 											<div class="hs-wrapper hs-wrapper2">
-												<img src="image/{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
+												<img src="{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 											</div>
 											<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 												@php($authors = book_author::select('*')

@@ -1,7 +1,7 @@
 
 <?php use App\book_genre; ?>
     <div class="row justify-content-center">
-        <div class="col-md-11">
+        <div style=" margin:15px">
             <div class="col-lg-12 well">
                 <div class="row">
                     <form method="POST" action="{{ route('register') }}">
@@ -172,7 +172,7 @@
                                                     ->get())
 
                                             @foreach($book_genre as $book_genres)
-                                                <input type="checkbox" name="category[{{$book_genres->genre_id}}]" id="{{$book_genres->genre_id}}" value="{{$book_genres->genre_id}}" onclick="return Validateuser_categorySelection();"><span>{{$book_genres->genre_name}}<span><br>
+                                            <div class= 'col-xs-4' > <input type="checkbox" name="category[{{$book_genres->genre_id}}]" id="{{$book_genres->genre_id}}" value="{{$book_genres->genre_id}}" onclick="return Validateuser_categorySelection();">  {{$book_genres->genre_name}}</div>
                                             @endforeach
                                 </label>
                             </fieldset>
