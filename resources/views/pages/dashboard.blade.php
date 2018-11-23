@@ -20,7 +20,7 @@
 	<div class="banner-bottom">
 			<div class="container">
 				<div class="top-brands">
-				<br><br><h3>Hot Books</h3></div>
+				<h3>Hot Books</h3></div>
 				<div class="col-md-5 wthree_banner_bottom_left">
 					<img src="{{('http://1.bp.blogspot.com/-53-Vqn14Hf8/UVEbaggKdtI/AAAAAAAAJr8/dv5p4LibRVk/s1600/most+recommended+ya+reads.jpg')}}" alt=" " class="img-responsive" />
 				</div>
@@ -102,7 +102,7 @@
 	->get())
 
 	@foreach($genre as $genre)
-	<div class="new-products">
+	<div class="new-products"  style="padding: 0 0">
 
 		@php ($count=0)
 		@php ($count1=0)
