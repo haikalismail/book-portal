@@ -20,7 +20,7 @@
 	<div class="banner-bottom">
 			<div class="container">
 				<div class="top-brands">
-				<h3>Hot Books</h3></div>
+				<br><br><h3>Hot Books</h3></div>
 				<div class="col-md-5 wthree_banner_bottom_left">
 					<img src="{{('http://1.bp.blogspot.com/-53-Vqn14Hf8/UVEbaggKdtI/AAAAAAAAJr8/dv5p4LibRVk/s1600/most+recommended+ya+reads.jpg')}}" alt=" " class="img-responsive" />
 				</div>
@@ -56,7 +56,7 @@
 																			<div class="col-md-4 agile info_new_products_grid agile info_new_products_grid_mobiles">
 																				<div class="agile_ecommerce_tab_left mobiles_grid">
 																					<div class="hs-wrapper hs-wrapper2">
-																						<img src="image/{{$books->image_url}}" alt="No Image" class="img-responsive"/>	
+																						<img src="{{$books->image_url}}" alt="No Image" class="img-responsive"/>	
 																					</div>
 																					<h5><a href="/book/{{$books->book_id}}">{{$books->book_title}}</h5>
 																						@php($authors = book_author::select('*')
@@ -108,7 +108,7 @@
 		@php ($count1=0)
 		@php ($count2=0)
 				<div class="container" style="padding-bottom: 20px;">
-					<h3>{{$genre->genre_name}}</h3>	
+					<br><br><h3>{{$genre->genre_name}}</h3>	
 					<div class="col-md-12 w3ls_mobiles_grid_right">
 							<!--TIGA YANG FIRST-->
 							<div class="w3ls_mobiles_grid_right_grid3">
@@ -119,11 +119,12 @@
 									->get())
 								@if(count($books) > 0)
 								@foreach($books as $book)
+								@if($genre->genre_name === $book->genre_name)
 									@if($count2<3)
 									<div class="col-md-4 agile info_new_products_grid agile info_new_products_grid_mobiles">
 										<div class="agile_ecommerce_tab_left mobiles_grid">
 											<div class="hs-wrapper hs-wrapper2">
-												<img src="image/{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
+												<img src="{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 											</div>
 											<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 												@php($authors = book_author::select('*')
@@ -142,6 +143,7 @@
 										
 									</div>
 									@php($count2++)
+									@endif
 									@endif
 								@endforeach
 								@endif
