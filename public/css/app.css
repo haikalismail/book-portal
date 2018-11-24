@@ -11596,7 +11596,7 @@ li.w3pages .dropdown-menu > li > a:hover {
 
 .starRating:not(old) > label {
   float: right;
-  background: image-url("star.png");
+  background: url(../images/star.png);
   background-size: contain;
   margin-right: 2px;
 }
@@ -11606,7 +11606,7 @@ li.w3pages .dropdown-menu > li > a:hover {
   display: block;
   width: 18px;
   height: 18px;
-  background: image-url("star-.png");
+  background: url(../images/star-.png);
   background-size: contain;
   opacity: 0;
   -webkit-transition: opacity 0.2s linear;
