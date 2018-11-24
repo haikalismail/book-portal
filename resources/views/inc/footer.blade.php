@@ -7,7 +7,7 @@
 				</div>
 			</div>
 			<div class="container">
-				<p>&copy; 2017 Electronic Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+					<p>&copy; 2018 Book & Reco. All rights reserved </p>
 			</div>
 		</div>
 </div>
