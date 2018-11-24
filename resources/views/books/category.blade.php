@@ -24,7 +24,7 @@
 												->get())
 											<p>
 											@foreach($authors as $author)
-											{{$author->author_fname}} {{$author->author_lname}}
+											{{$author->author_name}}
 											@endforeach
 											</p>
 									
