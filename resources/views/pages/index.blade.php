@@ -16,13 +16,13 @@
 	<!-- category -->
 	@php($genre = book_genre::select('*')->get())
 	@foreach($genre as $genre)
-	<div class="new-products">
+	<div class="new-products" style="padding: 0 0">
 
 		@php ($count=0)
 		@php ($count1=0)
 		@php ($count2=0)
 				<div class="container" style="padding-bottom: 20px;">
-					<br><br><h3>{{$genre->genre_name}}</h3>	
+					<h3>{{$genre->genre_name}}</h3>	
 					<div class="col-md-12 w3ls_mobiles_grid_right">
 							<!--TIGA YANG FIRST-->
 							<div class="w3ls_mobiles_grid_right_grid3">

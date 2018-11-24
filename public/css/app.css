@@ -11302,7 +11302,7 @@ li.w3pages .dropdown-menu > li > a:hover {
 /*-- //banner --*/
 /*-- banner-bottom --*/
 .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-  padding: 50 50;
+  padding: 5em 0;
 }
 
 .modal-body iframe {
@@ -14199,7 +14199,7 @@ td.invert-image a img {
     width: 30%;
   }
   .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-    padding: 0 0;
+    padding: 4em 0;
   }
   .footer-copy-pos {
     right: 5%;
@@ -14438,7 +14438,7 @@ td.invert-image a img {
     padding: 8.5em 0 0;
   }
   .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-    padding: 0 0;
+    padding: 3em 0;
   }
   .special-deals h2, .new-products h3, .top-brands h3, .w3l_related_products h3, .team h3, .mail h3, h3.agileits-title {
     font-size: 1.8em;
@@ -15037,7 +15037,7 @@ td.invert-image a img {
     width: 72%;
   }
   .banner-bottom, .team, .checkout, .additional_info, .team-bottom, .single, .mail, .special-deals, .about, .faq, .typo, .new-products, .banner-bottom1, .top-brands, .mobiles, .w3l_related_products {
-    padding: 0 0;
+    padding: 2em 0;
   }
   .w3_hs_bottom_sub ul {
     padding: 9em 0 0 !important;

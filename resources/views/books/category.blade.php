@@ -14,8 +14,8 @@
 									<div class="hs-wrapper hs-wrapper2">
 										<img src = "{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 									</div>
-									<div style="display:inline-block;max-height:auto">
-									<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
+									
+									<div style="height:100px;max-height:200px;display:inline-block;"><h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 										@php($authors = book_author::select('*')
 												->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
 												->where('book_id',$book->book_id)
