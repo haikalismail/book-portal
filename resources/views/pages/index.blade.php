@@ -16,7 +16,7 @@
 	<!-- category -->
 	@php($genre = book_genre::select('*')->get())
 	@foreach($genre as $genre)
-	<div class="new-products">
+	<div class="new-products" style="padding: 0 0">
 
 		@php ($count=0)
 		@php ($count1=0)
@@ -28,11 +28,12 @@
 							<div class="w3ls_mobiles_grid_right_grid3">
 								@if(count($books) > 0)
 								@foreach($books as $book)
+									@if($genre->genre_name === $book->genre_name)
 									@if($count2<3)
 									<div class="col-md-4 agile info_new_products_grid agile info_new_products_grid_mobiles">
 										<div class="agile_ecommerce_tab_left mobiles_grid">
 											<div class="hs-wrapper hs-wrapper2">
-												<img src="image/{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
+												<img src="{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 											</div>
 											<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 												@php($authors = book_author::select('*')
@@ -51,6 +52,7 @@
 										
 									</div>
 									@php($count2++)
+									@endif
 									@endif
 								@endforeach
 								@endif
