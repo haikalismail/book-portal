@@ -15,7 +15,7 @@
 										<img src = "{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 									</div>
 									
-									<div style="height:100px;max-height:100px;display:inline-block;text-align:center;">
+									<div style="height:60px;max-height:60px;display:inline-block;text-align:center;">
 										<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 									</div>
 									<br/>
