@@ -126,7 +126,7 @@ class PagesController extends Controller
             $items = book_items::where('book_id', 'LIKE', '%'. $q .'%') 
                             ->orWhere('book_title', 'LIKE', '%'. $q .'%')
                             ->orWhere('book_isbn', 'LIKE', '%'. $q .'%')
-                            ->get();
+                            ->paginate(15);
             if(count($items) > 0)
                 return view ('pages.search')->withDetails ($items)->withQuery ($q);
             else
