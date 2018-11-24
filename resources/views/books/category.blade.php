@@ -15,9 +15,11 @@
 										<img src = "{{$book->image_url}}" alt="No Image" class="img-responsive"/>	
 									</div>
 									
-									<div style="height:50px;max-height:50px;display:inline-block;text-align:center;">
+									<div style="height:100px;max-height:100px;display:inline-block;text-align:center;">
 										<h5><a href="/book/{{$book->book_id}}">{{$book->book_title}}</h5>
 									</div>
+									<br/>
+									<div style="height:30px;max-height:30px;display:inline-block;text-align:center;">
 										@php($authors = book_author::select('*')
 												->leftjoin('book_contributor', 'book_contributor.author_id', '=', 'book_author.author_id')
 												->where('book_id',$book->book_id)
@@ -27,7 +29,7 @@
 											{{$author->author_name}}
 											@endforeach
 											</p>
-									
+									</div>
 									<div class="col-md-12">
 										<a class="button button2" href="book/{{$book->book_id}}" role="button">View More</a>
 									</div> 
