@@ -16,6 +16,9 @@
 
 <!-- Custom Theme files -->
 <link rel="stylesheet" href="{{asset('css/app.css')}}">
+<link href={{asset('css/mycustomstyle.css')}} rel="stylesheet" type="text/css" media="all" />
+
+<link href={{asset('css/font-awesome.css')}} rel="stylesheet"> 
 <!-- //Custom Theme files -->
 
 <script src="{{ asset('js/app.js') }}"></script>

@@ -1,13 +1,11 @@
 
 <?php use App\book_genre; ?>
     <div class="row justify-content-center">
-        <div class="col-md-11">
+        <div style=" margin:15px">
             <div class="col-lg-12 well">
                 <div class="row">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
-                       
 
                         <!--first name-->
                         <div class="form-group row">
@@ -169,13 +167,14 @@
 
                             <!--user_category--> 
                             <fieldset>  
-                                <label for="category">{{ __('Preference category') }}</label><br><br>
+                                <label for="category">{{ __('Preference category') }}<br><br>
                                 @php($book_genre = book_genre::select('*')
                                                     ->get())
 
                                             @foreach($book_genre as $book_genres)
-                                                <input type="checkbox" name="category[{{$book_genres->genre_name}}]" id="{{$book_genres->genre_name}}" value="{{$book_genres->genre_id}}" onclick="return Validateuser_categorySelection();">{{$book_genres->genre_name}}<br>
+                                            <div class= 'col-xs-4' > <input type="checkbox" name="category[{{$book_genres->genre_id}}]" id="{{$book_genres->genre_id}}" value="{{$book_genres->genre_id}}" onclick="return Validateuser_categorySelection();">  {{$book_genres->genre_name}}</div>
                                             @endforeach
+                                </label>
                             </fieldset>
 
                             <!--check count of user_category selected-->
@@ -186,15 +185,16 @@
                                         var numberOfCheckedItems = 0;  
                                         for(var i = 0; i < checkboxes.length; i++)  
                                         {  
-                                                if(checkboxes[i].checked)  
+                                                if(checkboxes[i].checked){
                                                         numberOfCheckedItems++;  
-                                        }  
-                                        if(numberOfCheckedItems > 1)  
-                                        {  
-                                                alert("You can't select more than five Category!");  
-                                                return false;  
-                                        }  
-                                }  
+                                         
+                                                    if(numberOfCheckedItems > 1)  
+                                                    {  
+                                                            alert("You can't select more than five Category!");  
+                                                            return false;  
+                                                    } 
+                                                } 
+                                }  }
                             </script>
 
                             <div class="form-group row mb-0">

@@ -33,7 +33,8 @@ class LoginController extends Controller
     protected function redirectTo()
         {
             $user = Auth::user();
-            return url()->previous();
+            Session::put('userid', $user->user_id);
+            return '/dashboard';
         }
 
     /**
@@ -55,7 +56,8 @@ class LoginController extends Controller
 
     public function logout(Request $request) {
         Auth::logout();
-        return redirect()->back();
+        Session::forget('userid');
+        return redirect('/');
       }
 
       

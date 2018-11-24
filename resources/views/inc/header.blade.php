@@ -5,7 +5,7 @@
 <div class="modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="width: 60%">
+    <div class="modal-content" style="width: 60% , margin:auto ">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           &times;</button>
@@ -56,14 +56,14 @@
 <!-- header -->
 <div class="header" id="home1">
     <div class="container">
-      <div class="w3l_login" style="margin-left:10em;">
+      <div class="w3l_login" >
         <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         <p>Login</p>
       </div>
-      <div class="w3l_logo" style="text-align: center;">
+      <div class="w3l_logo" >
         <h1><a href="/">Book Portal<span>Your Library. Your Way.</span></a></h1>
       </div>
-      <div class="search" style="margin-left:13em;">
+      <div class="search" >
         <input class="search_box" type="checkbox" id="search_box">
         <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
         <div class="search_form">
