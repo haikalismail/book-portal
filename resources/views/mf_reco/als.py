@@ -1,17 +1,19 @@
 import pyspark
 from pyspark import SparkContext, SparkConf
+""" SparkContext: Main entry point for Spark Functionality
+    SparkConf: Configuring Spark"""
 conf = SparkConf().setAppName("pyspark")
 sc = SparkContext(conf=conf) 
 
 #importing some libraries
-movielens = sc.textFile("../in/ml-100k/u.data")
+bookDatasets = sc.textFile("../in/ml-100k/u.data")
 
-movielens.first()
-movielens.count()
+bookDatasets.first()
+bookDatasets.count()
 
 #Clean up the data by splitting it
 #Movielens readme says the data is split by tabs
-clean_data = movielens.map(lambda x:x.split('\t'))
+clean_data = bookDatasets.map(lambda x:x.split('\t'))
 
 #extract just the ratings to its own RDD
 rate = clean_data.map(lambda y: int(y[2]))
@@ -29,7 +31,7 @@ from pyspark.mllib.recommendation\
 
 #We'll need to map the movielens data to a Rating object
 #A Rating object is made up of (user, item, rating)
-mls = movielens.map(lambda l: l.split('\t'))
+mls = bookDatasets.map(lambda l: l.split('\t'))
 ratings = mls.map(lambda x: Rating(int(x[0]),\
     int(x[1]), float(x[2])))
 
