@@ -80,17 +80,19 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div> 
-	<!--SYAF RECOMMENDATION -->
+
+	<!-------------------------------------------SYAF RECOMMENDATION---------------------------------------->
 	<div class="container">
 		<div class="sap_tabs">	
 			<ul>
-				<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>User Who Read This Also Read</span></li>
+				<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>User Who Read This Also Read</span></li>			
+			</ul>
+			
+			<!-- Display Recommended Books -->
 
-				
-			</ul>									            	      
 		</div>
 	</div>
-	<!--RECOMMENDATION END-->			        
+	<!---------------------------------------RECOMMENDATION END----------------------------------------------->			        
 
 	<!--TEE INSERT REVIEW-->
 	<div class="additional_info">

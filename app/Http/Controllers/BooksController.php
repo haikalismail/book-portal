@@ -24,11 +24,7 @@ class BooksController extends Controller
         return view ('books.category') -> with ('books', $books);
        
     }
-
-
-
-
-
+s
     public function about()
     {
         return view ('books.about');
