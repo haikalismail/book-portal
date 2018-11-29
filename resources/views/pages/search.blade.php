@@ -31,6 +31,7 @@
   
             </tr>
             @endforeach
+            {{$details->links()}}
           </tbody>
         </table>
         @elseif(isset($message))
