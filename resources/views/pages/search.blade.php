@@ -20,6 +20,7 @@
             </tr>
           </thead>
           <tbody>
+
             @foreach($details as $items)
             <tr>
               <td>{{$items->book_id}}</td>
@@ -34,10 +35,13 @@
             {{$details->links()}}
           </tbody>
         </table>
+        <center> {{ $details->links() }} </center>
+
         @elseif(isset($message))
           <p>{{ $message }}</p>
-    
         @endif
+
       </div>
+
       @include('inc.footer')
 @endsection

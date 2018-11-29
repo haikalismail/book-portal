@@ -10,8 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/search/{q}' , 'SearchController@show');
 
-Route::get('/', 'PagesController@index');
+Route::post('/search', 'SearchController@processForm');
+
+Route::any('/', 'PagesController@index');
 
 Route::get('/dashboard', 'PagesController@dashboard');
 
@@ -24,8 +27,6 @@ Route::resource('posts','PostController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::any('/search','PagesController@search');
 
 Route::resource('bookgenre','genreCont');
 

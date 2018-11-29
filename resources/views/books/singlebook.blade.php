@@ -10,7 +10,7 @@
 			<div class="col-md-4 single-left">
 				<div class="flexslider">
 					<div>
-						<img src="/{{$book->image_url}}" alt="Image tak keluar" class="img-responsive" data-imagezoom="true"/> 
+						<img src="{{$book->image_url}}" alt="Image tak keluar" class="img-responsive" data-imagezoom="true"/> 
 					</div>
 					
 				</div>
