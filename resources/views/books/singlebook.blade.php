@@ -80,6 +80,17 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div> 
+	<!--SYAF RECOMMENDATION -->
+	<div class="container">
+		<div class="sap_tabs">	
+			<ul>
+				<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>User Who Read This Also Read</span></li>
+
+				
+			</ul>									            	      
+		</div>
+	</div>
+	<!--RECOMMENDATION END-->			        
 
 	<!--TEE INSERT REVIEW-->
 	<div class="additional_info">
@@ -151,14 +162,12 @@
 								
 							@endif	
 						</div>
-					</div> 			        					            	      
+					</div> 					            	      
 				</div>	
 			</div>
-			
 		</div>
 	</div>
 	<!--REVIEW END-->
-	
 
 	<!-- //single -->  
 	<script>
