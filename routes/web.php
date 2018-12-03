@@ -10,9 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/search/{q}' , 'SearchController@show');
-
-Route::post('/search', 'SearchController@processForm');
+Route::any('search/{q]' , 'SearchController@show');
 
 Route::any('/', 'PagesController@index');
 
