@@ -69,7 +69,7 @@
         <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
         <div class="search_form">
           
-          <form action="{{action('SearchController@processForm')}}" method="POST" role="search">
+          <form action="{{action('SearchController@show')}}" method="GET" role="search">
             {{ csrf_field() }}
             <input type="text" name="q" placeholder="Search keywords...">
             <input type="submit" value="send">
@@ -173,7 +173,7 @@
             <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
             <div class="search_form">
               
-              <form action="{{action('SearchController@processForm')}}" method="POST" role="search">
+              <form action={{action('SearchController@show')}} method="GET" role="search">
                 
                 <input type="text" name="q" placeholder="Search keywords...">
                 <input type="submit" value="send">

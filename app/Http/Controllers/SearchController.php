@@ -96,7 +96,7 @@ class SearchController extends Controller
 
     
     public function processForm() {
-        $q  = Input::get('q') ;
+       
 
         if($q == ''){
             return view ('pages.search')->withMessage ("Oops!, search field cannot be empty");
@@ -110,18 +110,25 @@ class SearchController extends Controller
         
     }
 
-    public function show($q)
-    {
-        $items = book_items::where('book_id', 'LIKE', '%'. $q .'%') 
-                            ->orWhere('book_title', 'LIKE', '%'. $q .'%')
-                            ->orWhere('book_isbn', 'LIKE', '%'. $q .'%')
-                            ->orderBy('book_id')
-                            ->paginate(15);
-        if(count($items) > 0)
-            return view ('pages.search')->withDetails($items)->withQuery ($q);
-        else
-            return view ('pages.search')->withMessage ("Oops!, record not found. Please try again");  
-        
+    public function show()
+    {   
+        $q  = Input::get('q') ;
+        if($q!=''){
+            $items = book_items::where('book_id', 'LIKE', '%'. $q .'%') 
+                                ->orWhere('book_title', 'LIKE', '%'. $q .'%')
+                                ->orWhere('book_isbn', 'LIKE', '%'. $q .'%')
+                                ->orderBy('book_id')
+                                ->paginate(15);
+            $items->appends(['q'=>$q]);
+            if(count($items) > 0)
+                return view ('pages.search')->withDetails($items)->withQuery ($q);
+            else
+                return view ('pages.search')->withMessage ("Oops!, record not found. Please try again"); 
+
+        }
+        else{
+            return view ('pages.search')->withMessage ("Oops!, record not found. Please try again"); 
+        }
 
         
        
