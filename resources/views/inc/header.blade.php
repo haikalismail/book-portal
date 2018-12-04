@@ -173,45 +173,10 @@
             <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
             <div class="search_form">
               
-              <form action="search" method="POST" role="search">
+              <form action="{{action('SearchController@processForm')}}" method="POST" role="search">
                 
                 <input type="text" name="q" placeholder="Search keywords...">
                 <input type="submit" value="send">
-              
-                <!-- Dispay recorded database--> 
-                <div class="container">
-                    @if(isset($details))
-                    <h2>Search Results for <b> {{ $query }} </b> ...</h2>
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>ID</th>
-                          <th>Book Name</th>
-                          <th>ISBN</th>
-                          <th>Location</th>
-                          <th>Status</th>
-                          <th>Unit Available</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach($details as $items)
-                        <tr>
-                          <td>{{$items->book_id}}</td>
-                          <td>{{$items->book_title}}</td>
-                          <td>{{$items->book_isbn}}</td>
-                          <td>{{$items->book_location}}</td>
-                          <td>{{$items->book_status}}</td>
-                          <td>{{$items->book_unit}}</td>
-              
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                    @elseif(isset($message))
-                      <p>{{ $message }}</p>
-                
-                    @endif
-                  </div>
               </form>
             </div>
           </div>

@@ -102,8 +102,10 @@ class SearchController extends Controller
             return view ('pages.search')->withMessage ("Oops!, search field cannot be empty");
         }
         else{
-            return Redirect::to('search/'.$q) ;
-
+            if(Auth::guest())
+                return Redirect::to('search/'.$q) ;
+            else
+                return Redirect::to('dashboard/search/'.$q) ;
         }
         
     }

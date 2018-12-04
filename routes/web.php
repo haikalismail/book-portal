@@ -14,6 +14,10 @@ Route::get('/search/{q}' , 'SearchController@show');
 
 Route::post('/search', 'SearchController@processForm');
 
+Route::get('/dashboard/search/{q}' , 'SearchController@show');
+
+Route::post('/dashboard/search', 'SearchController@processForm');
+
 Route::any('/', 'PagesController@index');
 
 Route::get('/dashboard', 'PagesController@dashboard');

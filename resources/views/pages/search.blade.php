@@ -32,10 +32,9 @@
   
             </tr>
             @endforeach
-            {{$details->links()}}
           </tbody>
         </table>
-        <center> {{ $details->links() }} </center>
+        <center> {{ $details->links() }}</center>
 
         @elseif(isset($message))
           <p>{{ $message }}</p>
