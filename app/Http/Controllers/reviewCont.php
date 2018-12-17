@@ -104,7 +104,11 @@ class reviewCont extends Controller
         ->first();
     
         $reviews = book_review::leftjoin('user_reader', 'book_review.user_id','=','user_reader.user_id')
-        ->leftjoin('book_rating', 'book_review.user_id','=','book_rating.user_id')
+        ->leftjoin('book_rating', function($join)
+        {
+            $join->on('book_review.user_id','=','book_rating.user_id');
+            $join->on('book_review.book_id','=','book_rating.book_id');
+        })
         ->where('book_review.user_id','!=',Auth::id())
         ->where('book_review.book_id',$id)
         ->orderBy('review_date','desc')
@@ -114,6 +118,12 @@ class reviewCont extends Controller
         ->where('book_review.book_id',$id)
         ->first();
         
+        $book_reco = DB::table('recommend_book')
+        ->leftjoin('book_items', 'recommend_book.book_id','=','book_items.book_id')
+        ->where('user_id',Auth::id())
+        ->take(5)
+        ->get();
+            
         
         return view('books.singlebook') 
         ->with('book', $booksingle)
@@ -122,10 +132,10 @@ class reviewCont extends Controller
         ->with('avgratings',$avgrating)
         ->with('reviews',$reviews)
         ->with('userreviews',$userreviews)
-        ->with('genre', $genre)
-        ;
+        ->with('recos',$book_reco)
+        ->with('genre', $genre);
             
-    }
+        }
 
     /**
      * Show the form for editing the specified resource.
@@ -156,8 +166,7 @@ class reviewCont extends Controller
         ->exists()) {
 
         //create review
-        $review = new book_review;
-        
+        $review = book_review::where('book_id' ,$id)->where('user_id', Auth::id())->first();
         $review->review = $request->input('review');
         $review->user_id = Auth::id();
         $review->book_id = $id;
