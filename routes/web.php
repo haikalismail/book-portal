@@ -20,7 +20,6 @@ Route::get('/updateRating/{id}','ratingCont@ratingUp');
 
 Route::get('/updateRatingAvg/{id}','ratingCont@ratingUpAvg');
 
-
 Route::post('updateR/{id}','ratingCont@update');
 
 Route::get('/rec_book', 'PagesController@dashboard');
