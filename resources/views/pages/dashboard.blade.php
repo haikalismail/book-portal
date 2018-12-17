@@ -24,7 +24,6 @@
 				<div class="col-md-5 wthree_banner_bottom_left">
 					<img src="{{('http://1.bp.blogspot.com/-53-Vqn14Hf8/UVEbaggKdtI/AAAAAAAAJr8/dv5p4LibRVk/s1600/most+recommended+ya+reads.jpg')}}" alt=" " class="img-responsive" />
 				</div>
-				
 				@foreach($user as $users)
 					@if($count<1)
 						<div class="col-md-7 wthree_banner_bottom_right">
@@ -92,6 +91,7 @@
 						@php($count++)
 					@endif
 				@endforeach
+				
 				<div class="clearfix"> </div>
 			</div>
 	</div>

@@ -17,12 +17,13 @@
 	@php($genre = book_genre::select('*')->get())
 	@foreach($genre as $genre)
 	<div class="new-products" style="padding: 0 0">
-
+		
 		@php ($count=0)
 		@php ($count1=0)
 		@php ($count2=0)
-				<div class="container" style="padding-bottom: 20px;">
-					<h3>{{$genre->genre_name}}</h3>	
+				<div class="container" style="padding-bottom: 20px;  border-bottom: 2px solid #ff5063;">
+
+					<h2>{{$genre->genre_name}}</h2>	
 					<div class="col-md-12 w3ls_mobiles_grid_right">
 							<!--TIGA YANG FIRST-->
 							<div class="w3ls_mobiles_grid_right_grid3">
@@ -59,13 +60,14 @@
 								<div class="clearfix"> </div>
 							</div>
 						</div>
+						@if($count1<1)
+						<a class="w3ls-cart" href="bookCategory/{{$genre->genre_id}}" role="button"  style="float: right;">View More</a>
+							@php($count1++)
+						@endif
 				</div>
 				@php($count++)
 	
-			@if($count1<1)
-			<a class="w3ls-cart" href="bookCategory/{{$genre->genre_id}}" role="button"  style="float: right; padding-right:200px;">View More</a>
-				@php($count1++)
-			@endif
+			
 		@endforeach
 	</div>
 	<!-- //category -->

@@ -14,7 +14,16 @@ Route::any('search/{q]' , 'SearchController@show');
 
 Route::any('/', 'PagesController@index');
 
-Route::get('/dashboard', 'PagesController@dashboard');
+Route::get('/dashboard' , 'PagesController@dashboard');
+
+Route::get('/updateRating/{id}','ratingCont@ratingUp');
+
+Route::get('/updateRatingAvg/{id}','ratingCont@ratingUpAvg');
+
+
+Route::post('updateR/{id}','ratingCont@update');
+
+Route::get('/rec_book', 'PagesController@dashboard');
 
 Route::get('/bookCategory', 'BooksController@index');
 

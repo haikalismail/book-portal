@@ -114,6 +114,12 @@ class reviewCont extends Controller
         ->where('book_review.book_id',$id)
         ->first();
         
+        $book_reco = DB::table('recommend_book')
+        ->leftjoin('book_items', 'recommend_book.book_id','=','book_items.book_id')
+        ->where('user_id',Auth::id())
+        ->take(5)
+        ->get();
+            
         
         return view('books.singlebook') 
         ->with('book', $booksingle)
@@ -122,10 +128,10 @@ class reviewCont extends Controller
         ->with('avgratings',$avgrating)
         ->with('reviews',$reviews)
         ->with('userreviews',$userreviews)
-        ->with('genre', $genre)
-        ;
+        ->with('recos',$book_reco)
+        ->with('genre', $genre);
             
-    }
+        }
 
     /**
      * Show the form for editing the specified resource.
@@ -156,8 +162,7 @@ class reviewCont extends Controller
         ->exists()) {
 
         //create review
-        $review = new book_review;
-        
+        $review = book_review::where('book_id' ,$id)->where('user_id', Auth::id())->first();
         $review->review = $request->input('review');
         $review->user_id = Auth::id();
         $review->book_id = $id;
