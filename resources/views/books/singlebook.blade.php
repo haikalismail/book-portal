@@ -4,13 +4,15 @@
 
 
 	<!-- single -->
+	<div id="pickoutput">
 
+		</div>
 	<div class="single">
 		<div class="container">
 			<div class="col-md-4 single-left">
 				<div class="flexslider">
 					<div>
-						<img src="/{{$book->image_url}}" alt="Image tak keluar" class="img-responsive" data-imagezoom="true"/> 
+						<img src="{{$book->image_url}}" alt="Image tak keluar" class="img-responsive" data-imagezoom="true"/> 
 					</div>
 					
 				</div>
@@ -22,31 +24,36 @@
 				<!--INSERT RATING HERE-->
 				<!--update the id whenver rating_id is obtainable-->
 				{!! Form::open(['id'=>'rating-form','action'=>['ratingCont@update',$book->book_id],'method'=>'POST']) !!} 
-				<h4>Avg Rating {{round($avgratings->average,2)}} </h4>
+				
+				<h4 id = 'avg_rating'>Avg Rating {{round($avgratings->average,2)}} </h4>
 				<div class="rating1">
 						{{Form::label('title','Your Rating')}}
 						@if(!is_null($ratings))
-						<p>{{$ratings->rating}}</p>
+						<p id='user_rating'>{{$ratings->rating}}</p>
 						
 						@else
 						<p></p>
 						@endif
 				<span class="starRating">
-					{{Form::hidden('_method','PUT')}}
-					<input id="rating5" type="radio" name="rating" value="5" onchange="updateRating()">
-					<label for="rating5" >5</label>
-					<input id="rating4" type="radio" name="rating" value="4" onchange="updateRating()">
-					<label for="rating4" >4</label>
-					<input id="rating3" type="radio" name="rating" value="3" onchange="updateRating()">
-					<label for="rating3" >3</label>
-					<input id="rating2" type="radio" name="rating" value="2" onchange="updateRating()">
-					<label for="rating2"> 2</label>
-					<input id="rating1" type="radio" name="rating" value="1" onchange="updateRating()">
-					<label for="rating1" >1</label>
 					
+					{{Form::hidden('_method','PUT')}}
+					<!-- start rating form -->
+							<input id="rating5" type="radio" name="rating" value="5" onchange="updateRating(this.value)">
+							<label for="rating5" >5</label>
+							<input id="rating4" type="radio" name="rating" value="4" onchange="updateRating(this.value)">
+							<label for="rating4" >4</label>
+							<input id="rating3" type="radio" name="rating" value="3" onchange="updateRating(this.value)">
+							<label for="rating3" >3</label>
+							<input id="rating2" type="radio" name="rating" value="2" onchange="updateRating(this.value)">
+							<label for="rating2"> 2</label>
+							<input id="rating1" type="radio" name="rating" value="1" onchange="updateRating(this.value)">
+							<label for="rating1" >1</label>
+						
+						<!-- end rating form -->
 				</span>
 				
-				</div>	
+				</div>
+
 				{!! Form::close() !!}
 			
 
@@ -74,6 +81,7 @@
 							<p>Status	:	{{$book->book_status}}</p>
 							<p>Unit		:	{{$book->book_unit}}</p>
 							<p>Publisher:	{{$book->publisher_name}}</p>
+							
 				</div>
 				
 			</div>
@@ -81,6 +89,28 @@
 		</div>
 	</div> 
 
+<!--RECOMMENDATION start-->
+
+		<div class="container">
+			
+				<ul>
+					<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>You may also like </span></li>
+				</ul>		
+				@foreach($recos as $reco)
+					<div class="col-md-2 agile info_new_products_grid agile info_new_products_grid_mobiles">
+						<div class="agile_ecommerce_tab_left mobiles_grid">
+							<div style = "position: relative; margin: 0 auto; overflow: hidden;">
+								<a href="{{ action('ratingCont@show',$reco->book_id)}}">
+									<img src = "{{$reco->image_url}}" alt="No Image" class="img"/></a>
+							</div>
+							<h4>{{$reco->book_title}}</h4>
+						</div>
+					</div>
+				@endforeach	
+				
+		</div>	
+
+<!--RECOMMENDATION END-->
 	<!--TEE INSERT REVIEW-->
 	<div class="additional_info">
 		<div class="container">
@@ -132,19 +162,34 @@
 							@else
 								<div class="additional_info_sub_grids">
 										<h5> Your review </h5>
-										<div class="col-xs-12 additional_info_sub_grid_right">
-											<div class="additional_info_sub_grid_rightl">
-													{{$userreviews->user_fname}}
-												<h5>{{$userreviews->review}}</h5>
-												<small>Wrote on {{$userreviews->review_date}}</small>
-											</div>
-											<div class="additional_info_sub_grid_rightr">
-												<div class="rating">
-													
-													<div class="clearfix"> </div>
+										<div>
+											<div class="col-xs-12 additional_info_sub_grid_right" id = 'displayreview'>
+												<div class="additional_info_sub_grid_rightl">
+														{{$userreviews->user_fname}}
+													<h5>{{$userreviews->review}}</h5>
+													<small>Wrote on {{$userreviews->review_date}}</small>
 												</div>
+												<button id="btnEdit">Edit Review</button>
+
+												<div class="clearfix"> </div>
+
 											</div>
-											<div class="clearfix"> </div>
+											<div class="col-xs-12 additional_info_sub_grid_right" id = 'editreview' style="display:none;">
+													<h5>Edit Your Review </h5>
+									
+													{!! Form::open(['id'=>'review-form','action'=>['reviewCont@update',$book->book_id],'method'=>'POST', 'onsubmit'=>'event.preventDefault(); updateReview()']) !!}
+													{{Form::hidden('_method','PUT')}}
+													<div class='form-group'>
+															{{Form::label('review','Write your Review')}}
+															{{Form::textarea('review',$userreviews->review,['id' => 'article-ckeditor' , 'class'=>'form-control' , 'placeholder'=> 'Your review body','required' => 'required' ])}}
+															
+													</div>
+													{{form::submit('Save')}}
+													<button id="btnEdit" class = 'btnreview'>Cancle</button>
+
+													{!! Form::close() !!}
+	
+											</div>
 										</div>
 										<div class="clearfix"> </div>
 									</div>
@@ -158,18 +203,128 @@
 		</div>
 	</div>
 	<!--REVIEW END-->
-	
+
+	<script>
+
+		function loadlink(){
+			var rating = 0;
+			
+			$.ajax({
+				url: '/updateRating/{{$book->book_id }}',
+				type: 'GET',
+				success: function(response){ // What to do if we succeed
+					rating = JSON.stringify(response['rating']);
+					if(rating == '1'){
+						$("#rating1").prop("checked", true);
+						$('#user_rating').text(1);
+					}
+					else if(rating == '2'){
+						$("#rating2").prop("checked", true);
+						$('#user_rating').text(2);
+					}
+					else if(rating == '3'){
+						$("#rating3").prop("checked", true);
+						$('#user_rating').text(3);
+					}
+					else if(rating == '4'){
+						$("#rating4").prop("checked", true);
+						$('#user_rating').text(4);
+					}
+					else if(rating == '5'){
+						$("#rating5").prop("checked", true);
+						$('#user_rating').text(5);
+					}
+				},
+				error: function(response){
+					$('#pickoutput').html(JSON.stringify(response));
+				
+				}
+				})
+
+				
+		}
+
+			
+			loadlink(); // This will run on page load
+		
+		setInterval(function(){
+			loadlink() // this will run after every 5 seconds
+		}, 2000);
+
+		function loadavg(){
+				$.ajax({
+				url: '/updateRatingAvg/{{$book->book_id }}',
+				type: 'GET',
+				success: function(response){ // What to do if we succeed
+					avgrating = JSON.stringify(response['average']);
+					avgrating = avgrating.slice(1,-1);
+					var avginfloat = parseFloat(avgrating);
+					avginfloat = avginfloat.toFixed(2);
+					$('#avg_rating').text('Avg Rating '+avginfloat);
+					
+				},
+				error: function(response){
+					$('#pickoutput').html(JSON.stringify(response));
+				
+				}
+				})
+			}
+		
+			loadavg();
+		setInterval(function(){
+			loadavg() // this will run after every 5 seconds
+		}, 2000);
+	</script>
+	<script>
+		$('#btnEdit').on('click',function(){
+			if($('#displayreview').css('display')!='none'){
+			$('#editreview').show().siblings('div').hide();
+			}else if($('#editreview').css('display')!='none'){
+				$('#displayreview').show().siblings('div').hide();
+			}
+		});
+	</script>
 
 	<!-- //single -->  
-	<script>
-		function updateRating() {
+	<script type="text/javascript">
+
+			$.ajaxSetup({
+
+			headers: {
+
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+			}
+
+			});
+		
+		function updateRating(urating) {
 			var loggedIn = {{ auth()->check() ? 'true' : 'false' }};
 			if(!loggedIn){
 				$("input:radio").removeAttr("checked");
 				$('#myModal88').modal('show');
 			}
 			else{
-				document.getElementById("rating-form").submit();
+				
+				$.ajax({
+
+				type:'POST',
+
+				url:"/updateR/{{$book->book_id}}",
+
+				data:{rating : urating},
+
+				success:function(data){
+
+					alert(data.success);
+
+				},
+					error: function (jXHR, textStatus, errorThrown) {
+						$("#pickoutput").html(errorThrown);
+					}
+
+				});
+				
 			}
 		}
 

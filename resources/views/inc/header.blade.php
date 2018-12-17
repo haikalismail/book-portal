@@ -47,6 +47,7 @@
                 });
               });
             </script>
+            </div>
         </div>
       </div>
     </div>
@@ -68,7 +69,7 @@
         <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
         <div class="search_form">
           
-          <form action="{{action('PagesController@search')}}" method="POST" role="search">
+          <form action="{{action('SearchController@show')}}" method="GET" role="search">
             {{ csrf_field() }}
             <input type="text" name="q" placeholder="Search keywords...">
             <input type="submit" value="send">
@@ -131,9 +132,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="/" >Home</a></li>	
 						
-						<li><a href="/bookCategory" >Genre</a></li>						
-
-						<li><a href="#">Recommended Book</a></li>
+						<li><a href="/bookCategory" >Genre</a></li>				
 					</ul>
 				</div>
 			</nav>
@@ -172,8 +171,8 @@
             <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
             <div class="search_form">
               
-              <form action="{{action('PagesController@search')}}" method="POST" role="search">
-                {{ csrf_field() }}
+              <form action={{action('SearchController@show')}} method="GET" role="search">
+                
                 <input type="text" name="q" placeholder="Search keywords...">
                 <input type="submit" value="send">
               
@@ -238,11 +237,11 @@
 				</div> 
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li><a href="/dashboard" >Home</a></li>	
+						<li><a href="/" >Home</a></li>	
 						
 						<li><a href="/bookCategory" >Genre</a></li>						
 
-						<li><a href="#">Recommended Book</a></li>
+						<li><a href="/rec_book">Recommended Book</a></li>
 					</ul>
 				</div>
 			</nav>
