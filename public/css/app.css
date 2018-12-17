@@ -4293,7 +4293,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
@@ -11419,9 +11419,6 @@ li.w3pages .dropdown-menu > li > a:hover {
 }
 
 .agile_ecommerce_tab_left h5 a {
-  height:50px; /* or whatever width you want. */
-  max-height:50px; /* or whatever width you want. */
-  display: inline-block;
   font-size: 1.0em;
   color: #ff5063;
   text-decoration: none;
@@ -11604,15 +11601,16 @@ li.w3pages .dropdown-menu > li > a:hover {
   margin-right: 2px;
 }
 
-.starRating:not(old) > label:before{
-content         : '';
-display         : block;
-width           : 18px;
-height          : 18px;
-background      : url(../images/star-.png);
-background-size : contain;
-opacity         : 0;
-transition      : opacity 0.2s linear;
+.starRating:not(old) > label:before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: url(../images/star-.png);
+  background-size: contain;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
 }
 
 .starRating:not(old) > label:hover:before,
@@ -11660,7 +11658,7 @@ transition      : opacity 0.2s linear;
 
 /*-- //banner-bottom --*/
 /*-- special-deals --*/
-.special-deals h2, .new-products h3, .top-brands h3, .w3l_related_products h3, .team h3, .mail h3, h3.agileits-title {
+.special-deals h2, .new-products h3,  .top-brands h3, .w3l_related_products h3, .team h3, .mail h3, h3.agileits-title {
   font-size: 2em;
   color: #212121;
   position: relative;
@@ -11692,6 +11690,17 @@ transition      : opacity 0.2s linear;
   -o-transform: rotate(135deg);
   -ms-transform: rotate(135deg);
 }
+
+.new-products h2{
+  padding-top:0.5em;
+  font-size: 2em;
+  color: #212121;
+  position: relative;
+  padding-bottom: 1em;
+  text-align: center;
+ 
+}
+
 
 .w3agile_special_deals_grids {
   margin: 3em 0 0;
@@ -12516,7 +12525,7 @@ h3.other-nw {
 }
 
 .new-products {
-  background: #f3f3f3;
+  background: #ffffff;
 }
 
 .w3ls_mobiles_grid_left_grid h3 {
@@ -14031,6 +14040,20 @@ div#horizontalTab1 ul {
 }
 
 .review_grids input[type="submit"]:hover {
+  background: #3c43a4;
+}
+
+.review_grids button {
+  outline: none;
+  padding: 10px 0;
+  font-size: 1em;
+  color: #fff;
+  width: 25%;
+  background: #ff5063;
+  border: none;
+}
+
+.review_grids button:hover {
   background: #3c43a4;
 }
 

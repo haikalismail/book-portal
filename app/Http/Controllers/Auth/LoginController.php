@@ -34,8 +34,7 @@ class LoginController extends Controller
         {
             $user = Auth::user();
             Session::put('userid', $user->user_id);
-            return '/dashboard';
-        }
+            return redirect()->back();        }
 
     /**
      * Create a new controller instance.
@@ -57,8 +56,7 @@ class LoginController extends Controller
     public function logout(Request $request) {
         Auth::logout();
         Session::forget('userid');
-        return redirect('/');
-      }
+        return redirect()->back();      }
 
       
     
