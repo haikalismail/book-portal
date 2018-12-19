@@ -33,6 +33,7 @@ class LoginController extends Controller
     protected function redirectTo()
         {
             $user = Auth::user();
+            Session::put('userid', $user->user_id);
             return '/dashboard';
         }
 
@@ -55,6 +56,7 @@ class LoginController extends Controller
 
     public function logout(Request $request) {
         Auth::logout();
+        Session::forget('userid');
         return redirect('/');
       }
 

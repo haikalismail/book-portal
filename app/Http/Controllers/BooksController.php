@@ -25,14 +25,15 @@ class BooksController extends Controller
        
     }
 
+    public function ajaxRequestPost()
 
-
-
-
-    public function about()
     {
-        return view ('books.about');
+        
+
+        return response()->json(['success'=>'Got Simple Ajax Request.']);
+
     }
+
 
 
     /**

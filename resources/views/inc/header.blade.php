@@ -204,11 +204,11 @@
 				</div> 
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li><a href="/dashboard" >Home</a></li>	
+						<li><a href="/" >Home</a></li>	
 						
 						<li><a href="/bookCategory" >Genre</a></li>						
 
-						<li><a href="#">Recommended Book</a></li>
+						<li><a href="/rec_book">Recommended Book</a></li>
 					</ul>
 				</div>
 			</nav>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\book_rating;
 use App\book_items;
@@ -10,6 +11,8 @@ use App\book_review;
 use DB;
 use Session;
 use Auth;
+use ExecutePython;
+
 class ratingCont extends Controller
 {
     /**
@@ -53,7 +56,7 @@ class ratingCont extends Controller
         $rating->timestamps = false;
         $rating->save();
 
-        
+
     }
 
     /**
@@ -137,7 +140,26 @@ class ratingCont extends Controller
         //
     }
 
+    public function ratingUp($id)
+    {
+     $rating = book_rating::select('rating')
+     ->leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
+     ->where(['book_id'=>$id])
+     ->where('book_rating.user_id',Auth::id())
+     ->first(); 
+     return $rating;    
+ 
+     }
 
+     public function ratingUpAvg($id)
+     {
+        $avgrating = book_rating::select(DB::raw('avg(rating) AS average'))
+        ->leftjoin('user_reader', 'book_rating.user_id','=','user_reader.user_id')
+        ->where(['book_id'=>$id])
+        ->first();
+      return $avgrating;    
+  
+      }
 
     /**
      * Update the specified resource in storage.     *
@@ -166,15 +188,20 @@ class ratingCont extends Controller
             $ratings->book_id = "$id";
             $ratings->timestamps = false;
             $ratings->save();
-            
-            return redirect()->action('ratingCont@show',$id);
+            app(\App\Http\Controllers\ExecutePython::class)->executePython();
+            //return Redirect::action('ratingCont@show',$id);
+            return "orite";
             }
             else{
                 self::store($request,$id);
-                return redirect()->action('ratingCont@show',$id);
+                app(\App\Http\Controllers\ExecutePython::class)->executePython();
+                //return redirect()->action('ratingCont@show',$id);
+                return "orite";
             }
         
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -186,6 +213,8 @@ class ratingCont extends Controller
     {
         //
     }
+
+
 
 
     

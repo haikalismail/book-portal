@@ -1,6 +1,6 @@
 @extends('layout.app')
-@section('content')
 @include('inc.header')
+@section('content')
 
 <?php use App\book_author; ?>
 
