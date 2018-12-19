@@ -12,10 +12,6 @@
 */
 Route::any('search/{q]' , 'SearchController@show');
 
-Route::get('/dashboard/search/{q}' , 'SearchController@show');
-
-Route::post('/dashboard/search', 'SearchController@processForm');
-
 Route::any('/', 'PagesController@index');
 
 Route::get('/dashboard', 'PagesController@dashboard');
@@ -25,6 +21,8 @@ Route::get('/bookCategory', 'BooksController@index');
 Route::get('/bookCategory/{id}', 'BooksController@show');
 
 Route::resource('posts','PostController');
+
+Route::get('/test/{id}', 'ratingCont@show');
 
 Auth::routes();
 

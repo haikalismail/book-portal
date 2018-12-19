@@ -81,6 +81,8 @@
 		</div>
 	</div> 
 
+	
+
 	<!--TEE INSERT REVIEW-->
 	<div class="additional_info">
 		<div class="container">
@@ -159,6 +161,39 @@
 	</div>
 	<!--REVIEW END-->
 	
+	<!-----------------------------HAIKAL RECOMMENDATION----------------------------->
+	<div id="make-reco">
+		<ul>
+			<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Books That You May Like</span></li>			
+		</ul>
+
+		<!-- Display Recommended Books -->
+		<p>
+				
+				@foreach($reco as $recos)
+				<div class="col-md-3 agile info_new_products_grid agile info_new_products_grid_mobiles">
+					<div class="agile_ecommerce_tab_left mobiles_grid">
+						<div class="hs-wrapper hs-wrapper2">
+							<a href="/book/{{$recos->book_id}}"><img src = "{{$recos->small_img_url}}" alt="No Image" class="img-responsive"/></a>
+						</div>
+						
+						<div style="height:60px;max-height:60px;display:inline-block;text-align:center;">
+							<h5><a href="/book/{{$recos->book_id}}">{{$recos->book_title}}</h5>
+						</div>
+						<br/>
+						<div style="height:30px;max-height:30px;display:inline-block;text-align:center;">
+								<p>
+								@foreach($authors as $author)
+								{{$author->author_name}}
+								@endforeach
+								</p>
+						</div> 
+					</div>
+				</div>
+				@endforeach
+		</p>
+	</div>
+	<!-------------------RECOMMENDATION END-------------------------->
 
 	<!-- //single -->  
 	<script>

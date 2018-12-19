@@ -75,7 +75,23 @@
 		});
 																		
 		});
-	</script>
+</script>
+
+<script>
+		$(document).ready(function(){
+		  $("form").click(function(event){
+			event.preventDefault();
+
+			$form=$(this);
+
+			$.post(document.location.url, $(this).serialize(),function(data){
+				$feedback=$("<div>").html(data).find("error");
+				
+				form.prepend($feedback);
+			})
+		  });
+		});
+		</script>
 
 <script type="text/javascript">
 	$(window).load(function() {
@@ -104,10 +120,13 @@
 		
 	});
 </script>
+
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+
 <script>
 	CKEDITOR.replace( 'article-ckeditor' );
 </script>
+
 </head> 
 <body>
 	@include('inc.messages')

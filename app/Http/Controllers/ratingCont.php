@@ -106,8 +106,15 @@ class ratingCont extends Controller
     ->where('book_review.book_id',$id)
     ->first();
     
-        
+    $pred = app(ExecutePython::class)->executePython($id);
+
+    $text = str_replace(array("\n", "\r"),'', $pred);
+    $text = str_replace(' ', ',', $text);
+    $text = substr($text,0,-1);
+    //$book_reco = DB::select("select * from book_items where book_id=10");
+    $book_reco = DB::select("select * from book_items where book_id in (".$text.")");
     
+    //return view('books.test')
     return view('books.singlebook') 
     ->with('book', $booksingle)
     ->with('authors',$contributor)
@@ -115,8 +122,8 @@ class ratingCont extends Controller
     ->with('avgratings',$avgrating)
     ->with('reviews',$reviews)
     ->with('userreviews',$userreviews)
-    ->with('genre', $genre);
-        
+    ->with('genre', $genre)
+    ->with('reco',$book_reco);
     }
 
     /**

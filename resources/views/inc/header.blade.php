@@ -56,7 +56,7 @@
 
 <!-- header -->
 <div class="header" id="home1">
-    <div class="container">
+    <div class="container">    
       <div class="w3l_login" >
         <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         <p>Login</p>
@@ -134,7 +134,7 @@
 						
 						<li><a href="/bookCategory" >Genre</a></li>						
 
-						<li><a href="#">Recommended Book</a></li>
+						<li><a href="/test">Recommended Book</a></li>
 					</ul>
 				</div>
 			</nav>

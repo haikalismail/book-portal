@@ -4,7 +4,7 @@
         <div style=" margin:15px">
             <div class="col-lg-12 well">
                 <div class="row">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form id="register-form" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <!--first name-->
@@ -54,6 +54,7 @@
                                                 <strong>{{ $errors->first('username') }}</strong>
                                             </span>
                                         @endif
+                                        
                                 </div>
 
                                 <!--date of birth-->
@@ -125,8 +126,28 @@
                                 <div class="col-sm-6 form-group">
                                         <label for="user_state">{{ __('State') }}</label>
             
-                                            <input id="user_state" type="text" class="form-control{{ $errors->has('user_state') ? ' is-invalid' : '' }}" name="user_state" value="{{ old('user_state') }}" required autofocus>
+                                            <!--<input id="user_state" type="text" class="form-control{{ $errors->has('user_state') ? ' is-invalid' : '' }}" name="user_state" value="{{ old('user_state') }}" required autofocus-->
             
+                                            <select id="user_state" type="text" class="form-control{{ $errors->has('user_state') ? ' is-invalid' : '' }}" name="user_state" value="{{ old('user_state') }}" required autofocus>
+                                                <option value="#">Select your state.....</option>
+                                                <option value="Johor">Johor</option>
+                                                <option value="Kedah">Kedah</option>
+                                                <option value="Kelantan">Kelantan</option>
+                                                <option value="Melaka">Melaka</option>
+                                                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                                <option value="Pahang">Pahang</option>
+                                                <option value="Pulau Pinang">Pulau Pinang</option>
+                                                <option value="Perak">Perak</option>
+                                                <option value="Perlis">Perlis</option>
+                                                <option value="Sabah">Sabah</option>
+                                                <option value="Sarawak">Sarawak</option>
+                                                <option value="Selangor">Selangor</option>
+                                                <option value="Terengganu">Terengganu</option>
+                                                <option value="Wilayah Persekutuan Kuala Lumpur">Wilayah Persekutuan Kuala Lumpur</option>
+                                                <option value="Wilayah Persekutuan Labuan">Wilayah Persekutuan Labuan</option>
+                                                <option value="Wilayah Persekutuan Putrajaya">Wilayah Persekutuan Putrajaya</option>
+                                            </select>
+
                                             @if ($errors->has('user_state'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('user_state') }}</strong>
@@ -172,8 +193,9 @@
                                                     ->get())
 
                                             @foreach($book_genre as $book_genres)
-                                            <div class= 'col-xs-4' > <input type="checkbox" name="category[{{$book_genres->genre_id}}]" id="{{$book_genres->genre_id}}" value="{{$book_genres->genre_id}}" onclick="return Validateuser_categorySelection();">  {{$book_genres->genre_name}}</div>
+                                            <div class= 'col-xs-4' > <input type="checkbox" name="category[]" id="{{$book_genres->genre_id}}" value="{{$book_genres->genre_id}}" onclick="return Validateuser_categorySelection();">  {{$book_genres->genre_name}}</div>
                                             @endforeach
+                                            <h6><br>**You can choose up to 5 category that you like</h6><br><br>
                                 </label>
                             </fieldset>
 
@@ -181,20 +203,24 @@
                             <script type="text/javascript">  
                                 function Validateuser_categorySelection()  
                                 {  
-                                        var checkboxes = document.getElementsByName("category");  
+                                        var checkboxes = document.getElementsByName("category[]");  
                                         var numberOfCheckedItems = 0;  
                                         for(var i = 0; i < checkboxes.length; i++)  
                                         {  
-                                                if(checkboxes[i].checked){
-                                                        numberOfCheckedItems++;  
-                                         
-                                                    if(numberOfCheckedItems > 1)  
+                                                if(checkboxes[i].checked)
+                                                {
+                                                    numberOfCheckedItems++;
+                                                    //alert(numberOfCheckedItems);
+                                                
+                                                    if(numberOfCheckedItems > 5)  
                                                     {  
-                                                            alert("You can't select more than five Category!");  
+                                                            alert("You can't select more than five Category!");
+                                                            //checkboxes[i].checked = false ;  
                                                             return false;  
-                                                    } 
+                                                    }
                                                 } 
-                                }  }
+                                        }  
+                                }
                             </script>
 
                             <div class="form-group row mb-0">

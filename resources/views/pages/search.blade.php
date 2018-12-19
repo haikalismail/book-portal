@@ -1,8 +1,9 @@
 @extends('layout.app')
-
 @section('content')
 @include('inc.header')
+
 <?php use App\book_author; ?>
+
 <!-- Dispay recorded database--> 
 <br><br>
 <div class="container">
