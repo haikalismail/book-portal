@@ -1,7 +1,7 @@
 @extends('layout.app')
-@include('inc.header')
-@section('content')
 
+@section('content')
+@include('inc.header')
 <?php use App\book_author; ?>
 <!-- Dispay recorded database--> 
 <br><br>
