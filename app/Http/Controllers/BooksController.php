@@ -25,15 +25,6 @@ class BooksController extends Controller
        
     }
 
-    public function ajaxRequestPost()
-
-    {
-        
-
-        return response()->json(['success'=>'Got Simple Ajax Request.']);
-
-    }
-
 
 
     /**
